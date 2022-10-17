@@ -1,0 +1,1 @@
+<view class="errand-order"><nav-bar vue-id="0f5cead8-1" bind:__l="__l" vue-slots="{{['navLeft']}}"><view slot="navLeft">发起订单</view></nav-bar></view>

@@ -1,0 +1,45 @@
+{
+	"easycom": {
+		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [{
+			"path": "pages/errand/errand",
+			"style": {
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/errand/childCmps/errandOrder",
+			"style": {
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "登录界面",
+				"enablePullDownRefresh": false
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "触手校园",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#FFFFFF",
+		"navigationStyle": "custom", //导航栏样式设置成自定义导航栏
+		"enablePullDownRefresh": true
+	},
+	// "tabBar": {
+	// 	"color": "#666",
+	// 	"selectedColor": "#3474FF",
+	// 	"list": [
+	// 		{
+	// 			"text": "首页",
+	// 			"pagePath": "pages/index/index",
+
+	// 		}
+	// 	],
+	// },
+	"uniIdRouter": {}
+}

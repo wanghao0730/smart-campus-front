@@ -1,0 +1,19 @@
+@charset "UTF-8";
+/* uni.scss */
+/**
+ * 自定义全局的公用样式
+ */
+/* 可以重复使用的代码 */
+.navbar-wrap {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 999;
+}
+.navbar-wrap .navbar-search {
+  width: 65%;
+  position: absolute;
+  padding-left: 14px;
+  background-color: #fffff;
+}
+

@@ -1,0 +1,38 @@
+/* uni.scss */
+@import 'uview-ui/theme.scss';
+
+/**
+ * 自定义全局的公用样式
+ */
+$bk_color:#f2f2f2; //! 页面的灰度背景颜色
+$page_color:#fddf2f; //! 页面的主题颜色-黄色
+$black_color:#010001; //! 黑色按钮
+$gray_color:#b5b5b5; //! 可以用于描述等灰色按钮
+
+
+$font-color: #333;
+$desc-color: #999;
+$background-color:#A493FF;
+$background-color-active: #A493FF;
+/* 可以重复使用的代码 */
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+@mixin flex-jcsb {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+@mixin flex-col {
+    display: flex;
+    flex-direction: column;
+  }
+  
+	@mixin clamp2 {
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		overflow: hidden;
+	}
