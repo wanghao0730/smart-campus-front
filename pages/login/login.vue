@@ -1,7 +1,7 @@
 <template>
 	<view class="login-wrap">
 		<!-- <view class="background-design"></view> -->
-		<navbar>
+		<navbar :navBk="rgba(255, 255, 255, 0)" isBack>
 			<template #navLeft>
 				<view class="login-text">登录</view>
 			</template>
@@ -11,19 +11,19 @@
 		<!-- 底部弹出内容 -->
 		<view class="popup-box" :animation="animationData">
 			<!-- 表单提交 -->
-			<u--form labelPosition="top" :model="formData" :rules="rules" ref="userLoginForm">
-				<u-form-item label="账户" prop="userInfo.name" borderBottom>
-					<u--input v-model="formData.userInfo.name" border="none" placeholder="请输入账户"></u--input>
+			<u--form labelPosition="top" :model="form" :rules="rules" ref="userLoginForm">
+				<u-form-item label="学工/学号" prop="username" borderBottom labelWidth="250rpx">
+					<u--input v-model="form.username" border="none" placeholder="请填写学工账户"></u--input>
 				</u-form-item>
-				<u-form-item label="密码" prop="userInfo.password" borderBottom>
-					<u--input v-model="formData.userInfo.password" placeholder="请输入密码" border="none"></u--input>
+				<u-form-item label="密码" prop="password" borderBottom>
+					<u--input v-model="form.password" placeholder="请输入密码" border="none"></u--input>
 				</u-form-item>
 			</u--form>
 			<button class="login-btn">登录</button>
 			<!-- 使用微信一键登录 -->
 			<view class="footer">
-				
-			</view>	
+
+			</view>
 		</view>
 	</view>
 </template>
@@ -40,24 +40,22 @@
 				customNav: App.customNav,
 				animationData: {},
 				//用户登录
-				formData: {
-					userInfo: {
-						username: '',
-						password: ''
-					}
+				form: {
+					username: '',
+					password: ''
 				},
 				//验证规则
 				rules: {
-					'userInfo.username': {
+					username: {
 						type: 'string',
 						required: true,
-						message: '请填写姓名',
+						message: '请填写学工账户',
 						trigger: ['blur', 'change']
 					},
-					'userInfo.password': {
+					password: {
 						type: 'string',
 						required: true,
-						message: '请填写密码',
+						message: '请输入密码',
 						trigger: ['blur', 'change']
 					},
 				},
@@ -87,9 +85,9 @@
 			// }.bind(this), 1000)
 		},
 		onReady() {
-				//如果需要兼容微信小程序，并且校验规则中含有方法等，只能通过setRules方法设置规则。
-		    	this.$refs.userLoginForm.setRules(this.rules)
-		    },
+			//如果需要兼容微信小程序，并且校验规则中含有方法等，只能通过setRules方法设置规则。
+			this.$refs.userLoginForm.setRules(this.rules)
+		},
 		methods: {
 
 		}
@@ -124,6 +122,7 @@
 			border-top-left-radius: 50rpx;
 			border-top-right-radius: 50rpx;
 			z-index: 1000;
+
 			.login-btn {
 				height: 80rpx;
 				line-height: 80rpx;

@@ -1,6 +1,14 @@
 {
   "enablePullDownRefresh": false,
   "usingComponents": {
+    "u-radio-group": "/node-modules/uview-ui/components/u-radio-group/u-radio-group",
+    "u-radio": "/node-modules/uview-ui/components/u-radio/u-radio",
+    "u-icon": "/node-modules/uview-ui/components/u-icon/u-icon",
+    "u--form": "/node-modules/uview-ui/components/u--form/u--form",
+    "u-form-item": "/node-modules/uview-ui/components/u-form-item/u-form-item",
+    "u--textarea": "/node-modules/uview-ui/components/u--textarea/u--textarea",
+    "u--input": "/node-modules/uview-ui/components/u--input/u--input",
+    "u-datetime-picker": "/node-modules/uview-ui/components/u-datetime-picker/u-datetime-picker",
     "nav-bar": "/component/navbar/navbar"
   }
 }

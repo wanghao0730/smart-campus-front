@@ -11,11 +11,12 @@
 
 var _App = _interopRequireDefault(__webpack_require__(/*! ./App */ 6));
 var _uviewUi = _interopRequireDefault(__webpack_require__(/*! uview-ui */ 12));
+var _index = _interopRequireDefault(__webpack_require__(/*! store/index.js */ 136));
 
 
-var _zh = _interopRequireDefault(__webpack_require__(/*! @/common/locales/zh.js */ 252));
-var _en = _interopRequireDefault(__webpack_require__(/*! @/common/locales/en.js */ 253));
-var _vueI18nMin = _interopRequireDefault(__webpack_require__(/*! @/common/vue-i18n.min.js */ 254));
+var _zh = _interopRequireDefault(__webpack_require__(/*! @/common/locales/zh.js */ 140));
+var _en = _interopRequireDefault(__webpack_require__(/*! @/common/locales/en.js */ 141));
+var _vueI18nMin = _interopRequireDefault(__webpack_require__(/*! @/common/vue-i18n.min.js */ 142));
 
 
 
@@ -53,7 +54,8 @@ _vue.default.prototype._i18n = i18n;
 _vue.default.use(_uviewUi.default);
 _App.default.mpType = 'app';
 var app = new _vue.default(_objectSpread({
-  i18n: i18n },
+  i18n: i18n,
+  store: _index.default },
 _App.default));
 
 createApp(app).$mount();

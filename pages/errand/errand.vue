@@ -61,6 +61,7 @@
 				</view>
 				<!-- 提示用户下单 -->
 				<view class="jump-order">
+					<view class="tip">没有合适的地址?点击下单填写</view>
 					<view class="btn-text" @click="jumpOrder">去下单</view>
 				</view>
 			</view>
@@ -247,10 +248,10 @@
 			jumpOrder() {
 				console.log("点击")
 				//判断用户有没有选择地址
-				if (Object.keys(this.selectAddress).length === 0) {
-					console.log('请选择')
-					return getApp().globalData.global_Toast(true,'请选择地址',(res) => { console.log(res) })
-				}
+				// if (Object.keys(this.selectAddress).length === 0) {
+				// 	console.log('请选择')
+				// 	return getApp().globalData.global_Toast(true,'请选择地址',(res) => { console.log(res) })
+				// }
 				//将用户选择的地址跳转传递
 				uni.navigateTo({
 					url:`childCmps/errandOrder`
@@ -308,7 +309,7 @@
 			left: 0;
 			bottom: 0;
 			width: 100%;
-			height: 700rpx;
+			height: 850rpx;
 			background-color: $bk_color;
 			border-top-left-radius: 30rpx;
 			border-top-right-radius: 30rpx;
@@ -346,13 +347,14 @@
 			//内容面板
 			.location-wrap {
 				width: 100%;
-				padding: 10rpx 30rpx;
-				height: 500rpx;
+				padding: 0rpx 30rpx;
+				height: calc(850rpx - 240rpx);
 
 				.swiperItem {
 					width: 100%;
 					box-sizing: border-box;
-					padding: 5rpx 20rpx 20rpx 20rpx;
+					// padding: 5rpx 20rpx 10rpx 20rpx;
+					padding: 10rpx 20rpx;
 				}
 
 				.loc-item {
@@ -392,11 +394,16 @@
 			}
 			//提示用户提交
 			.jump-order {
-				height: 100rpx;
-				padding: 0 30rpx;
+				padding: 15rpx 0;
 				display: flex;
 				justify-content: center;
+				flex-direction: column;
 				align-items: center;
+				background-color: #fff;
+				.tip {
+					font-size: 26rpx;
+					color: $gray_color;
+				}
 				.btn-text {
 					background-color: $background-color;
 					width: 400rpx;

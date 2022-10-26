@@ -1,5 +1,6 @@
 import App from './App'
 import uView from "uview-ui";
+import store from 'store/index.js'
 // i18n部分的配置
 // 引入语言包，注意路径
 import Chinese from '@/common/locales/zh.js';
@@ -43,7 +44,8 @@ Vue.use(uView)
 App.mpType = 'app'
 const app = new Vue({
 	i18n,
-	...App
+	store,
+	...App,
 })
 app.$mount()
 // #endif
@@ -53,6 +55,7 @@ app.$mount()
 import {
 	createSSRApp
 } from 'vue'
+import store from './store';
 export function createApp() {
 	const app = createSSRApp(App)
 	return {

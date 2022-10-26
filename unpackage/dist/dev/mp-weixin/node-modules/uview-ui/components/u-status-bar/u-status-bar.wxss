@@ -1,0 +1,10 @@
+@charset "UTF-8";
+/* uni.scss */
+/**
+ * 自定义全局的公用样式
+ */
+/* 可以重复使用的代码 */
+.u-status-bar.data-v-3c8c2ae7 {
+  width: 100%;
+}
+

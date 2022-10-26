@@ -16,4 +16,8 @@
   padding-left: 14px;
   background-color: #fffff;
 }
+.navbar-wrap .navbar-search .control-style {
+  display: flex;
+  align-items: center;
+}
 

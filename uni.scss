@@ -30,9 +30,15 @@ $background-color-active: #A493FF;
     flex-direction: column;
   }
   
-	@mixin clamp2 {
+@mixin clamp2 {
 		display: -webkit-box;
 		-webkit-box-orient: vertical;
 		-webkit-line-clamp: 2;
 		overflow: hidden;
-	}
+}
+@mixin custom_shadow {
+	-moz-box-shadow:1px 0px 8px #A493FF; 
+	-webkit-box-shadow:1px 0px 8px #A493FF; 
+	box-shadow:1px 0px 8px #A493FF;
+}	
+	

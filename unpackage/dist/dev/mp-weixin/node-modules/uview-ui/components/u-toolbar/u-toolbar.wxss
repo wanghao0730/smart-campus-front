@@ -1,0 +1,40 @@
+@charset "UTF-8";
+/* uni.scss */
+/**
+ * 自定义全局的公用样式
+ */
+/* 可以重复使用的代码 */
+view.data-v-6d25fc6f, scroll-view.data-v-6d25fc6f, swiper-item.data-v-6d25fc6f {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  flex-grow: 0;
+  flex-basis: auto;
+  align-items: stretch;
+  align-content: flex-start;
+}
+.u-toolbar.data-v-6d25fc6f {
+  height: 42px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.u-toolbar__wrapper__cancel.data-v-6d25fc6f {
+  color: #909193;
+  font-size: 15px;
+  padding: 0 15px;
+}
+.u-toolbar__title.data-v-6d25fc6f {
+  color: #303133;
+  padding: 0 60rpx;
+  font-size: 16px;
+  flex: 1;
+  text-align: center;
+}
+.u-toolbar__wrapper__confirm.data-v-6d25fc6f {
+  color: #3c9cff;
+  font-size: 15px;
+  padding: 0 15px;
+}
+

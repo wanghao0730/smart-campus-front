@@ -1,0 +1,10 @@
+@charset "UTF-8";
+/* uni.scss */
+/**
+ * 自定义全局的公用样式
+ */
+/* 可以重复使用的代码 */
+.u-safe-bottom.data-v-758fd84f {
+  width: 100%;
+}
+

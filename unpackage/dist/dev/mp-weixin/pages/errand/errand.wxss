@@ -44,7 +44,7 @@
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 700rpx;
+  height: 850rpx;
   background-color: #f2f2f2;
   border-top-left-radius: 30rpx;
   border-top-right-radius: 30rpx;
@@ -76,13 +76,13 @@
 }
 .contro-map .select-panel .location-wrap.data-v-116aad86 {
   width: 100%;
-  padding: 10rpx 30rpx;
-  height: 500rpx;
+  padding: 0rpx 30rpx;
+  height: calc(850rpx - 240rpx);
 }
 .contro-map .select-panel .location-wrap .swiperItem.data-v-116aad86 {
   width: 100%;
   box-sizing: border-box;
-  padding: 5rpx 20rpx 20rpx 20rpx;
+  padding: 10rpx 20rpx;
 }
 .contro-map .select-panel .location-wrap .loc-item.data-v-116aad86 {
   padding: 20rpx 30rpx;
@@ -118,11 +118,16 @@
   overflow: hidden;
 }
 .contro-map .select-panel .jump-order.data-v-116aad86 {
-  height: 100rpx;
-  padding: 0 30rpx;
+  padding: 15rpx 0;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
+  background-color: #fff;
+}
+.contro-map .select-panel .jump-order .tip.data-v-116aad86 {
+  font-size: 26rpx;
+  color: #b5b5b5;
 }
 .contro-map .select-panel .jump-order .btn-text.data-v-116aad86 {
   background-color: #A493FF;
