@@ -22,6 +22,20 @@
 			}
 		}
 	],
+	//分包以pages内部目录为划分
+	"subPackages": [
+		{
+			"root": "pages/user/childCmps",
+			"pages": [
+				{
+					"path": "address/address",
+					"style": {
+						"enablePullDownRefresh": false
+					}
+				}
+			]
+		}
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "触手校园",

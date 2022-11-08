@@ -5,7 +5,8 @@
  */
 const getters = {
 	wxuser:state => state.user.wxuser,
-	token: state => state.user.token
+	token: state => state.user.token,
+	defaultAddress: state => state.user.defaultAddress,
 }
 
 export default getters

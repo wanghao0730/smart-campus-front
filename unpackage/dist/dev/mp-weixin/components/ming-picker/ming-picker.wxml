@@ -1,0 +1,1 @@
+<view class="data-v-a99e04dc"><picker class="address-picker data-v-a99e04dc" mode="multiSelector" range="{{[province,city,area]}}" value="{{value}}" data-event-opts="{{[['change',[['changeHandler',['$event']]]],['cancel',[['close',['$event']]]],['columnchange',[['columnchange',['$event']]]]]}}" bindchange="__e" bindcancel="__e" bindcolumnchange="__e"><slot></slot></picker></view>

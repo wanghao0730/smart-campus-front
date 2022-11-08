@@ -1,11 +1,14 @@
 <script>
+	import { tansParams } from '@/utils/format.js'
 export default {
 	globalData: {
 		//全局开发者服务器接口地址
 		// requesturl: 'https://www.szrdrp.com',//! 线上地址
 		//本地测试地址
-		requesturl: 'http://127.0.0.1:8080/emos-wx-api', // 测试地址
-		//全局服务器接口地址
+		requesturl: 'http://127.0.0.1:8080', // 测试地址
+		//微信应用
+		WX_APPID:'wxd7bd1960690835c5', //应用APPID
+		//全局服务器接口地址ss
 		socketurl: 'ws://localhost:8888',
 		//全局socketTask对象
 		socketTask: null,
@@ -57,11 +60,16 @@ export default {
 			};
 			//判断是否有用户如果存在就获取token
 			//这里写了两种方式一种key是authorization 一种是token选择适合的使用
-			// if (getApp().globalData.wxuser) {
-			// 	header.authorization = getApp().globalData.wxuser.token;
-			// }
-			if (getApp().globalData.wxuser) {
-				header.token = getApp().globalData.wxuser.token;
+			//自定token前缀为wx key: "value", 常用的authorization前缀为Bearer 这里不适用的原因是与后台登录用户进行个区分
+			if (getApp().globalData.wxuser != null) {
+				header.Authorization = 'wx ' + uni.getStorageSync("token");//用户存在去本地缓存中获取token
+			}
+			//判断用户的请求方式改造url get请求处理
+			if (method.toLowerCase() === 'get') {
+				//进行参数查询凭借 将data的参数设置为空
+				url = url + '?' + tansParams(data);
+				data = {}
+				// debugger
 			}
 			// header.authorization = 'Bearer 5986d038-2d38-4624-92ba-526bed0034e6';
 			/**
@@ -79,22 +87,22 @@ export default {
 					method: method,
 					dataType: 'json',
 					success: function(res) {
-						console.log("打印全局的数据",res)
 						//请求是否发送成功以及成功接收到后端响应 statusCode为200
 						if (res.statusCode == 200) {
 							if (res.data.code == 200) {
 								//! 成功后走resolve方法
 								resolve(res.data);
 							} 
-							else if (res.data.code == 401) { //认证失败							
+							else if (res.data.code == 401) { //认证失败												//登录过期/授权失败的时候默认提示
 								uni.showToast({
-									title: '登录已过期,请重新登录',
+									title: '请先完成登录哟!',
 									icon: 'none',
 									duration: 2500,
 									success:function(res) {
 										//! 清除缓存
 										uni.removeStorageSync("wxuser");
 										getApp().globalData.wxuser = null;
+										uni.removeStorageSync("token");
 										//! 在这里可以加上处理跳转页面的方法
 									}
 								});
@@ -106,7 +114,7 @@ export default {
 							//如果网络错误或者 后端设置了statuscode这里会判断
 						} else { //如果是其他错误 500的状态码在这里提示
 							uni.showToast({
-								title: res.data ? res.data : '网络错误，请稍后再试',
+								title: res.data ? res.data : '网络出错啦!,请稍后再试',
 								icon: 'none',
 								duration: 2000
 							});
@@ -1152,11 +1160,11 @@ export default {
 		 * h5，app-plus(nvue下也为app-plus)，mp-weixin，mp-alipay......
 		 */
 		//! 获取缓存数据  应用启动会执行onLaunch生命周期在这里获取用户数据
-		this.globalData.global_getStorage("wxuser", (res) => {
-			//! 重新设置回全局
-			this.globalData.wxuser = res;
-			// this.globalData.global_switchTab("pages/index/index",(value) => {})
-		})
+		console.log("声明周期")
+		const wxuser =  uni.getStorageSync("wxuser")
+		if (wxuser) {
+			this.globalData.wxuser = wxuser
+		}
 		//获取系统信息
 		this.globalData.SystemInfo = uni.getSystemInfoSync();
 		//动态根据系统信息数据计算自定义导航栏的高度
@@ -1169,8 +1177,6 @@ export default {
 		//导航栏上方的高度
 		this.globalData.customNav.menuTop = menuButtonInfo.top
 		this.globalData.customNav.menuHeight = menuButtonInfo.height
-		
-		console.log(this.globalData.customNav)
 	},
 	onShow() {
 		

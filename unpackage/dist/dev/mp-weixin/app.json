@@ -4,7 +4,14 @@
     "pages/errand/childCmps/errandOrder",
     "pages/login/login"
   ],
-  "subPackages": [],
+  "subPackages": [
+    {
+      "root": "pages/user/childCmps",
+      "pages": [
+        "address/address"
+      ]
+    }
+  ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "触手校园",

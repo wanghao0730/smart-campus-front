@@ -22,7 +22,7 @@
           "scene": null
         },
         {
-          "name": "",
+          "name": "用户登录",
           "pathName": "pages/login/login",
           "query": "",
           "launchMode": "default",
@@ -38,6 +38,13 @@
         {
           "name": "跑腿页面",
           "pathName": "pages/errand/errand",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "用户地址页面",
+          "pathName": "pages/user/childCmps/address/address",
           "query": "",
           "launchMode": "default",
           "scene": null

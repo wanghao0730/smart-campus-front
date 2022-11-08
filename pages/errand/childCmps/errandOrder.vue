@@ -24,28 +24,28 @@
 			<!-- 地址选择 -->
 			<view class="choose-address">
 				<!-- 地址新增用户不存在地址 -->
-				<view class="add-address" v-if="false">
+				<view class="add-address" v-if="!defaultAddress" @click="jumpAddress">
 					<image src="../../../static/image/common/add.png"></image>
 					<view>
-						新增地址
+						选择地址
 					</view>
 				</view>
 				<!-- 显示用户的地址 -->
-				<view class="user-address" v-if="true">
+				<view class="user-address" v-if="defaultAddress">
 					<!-- 地址详情 -->
-					<view class="address-detail">
-						广东科技学院松山湖校区西门-围栏处
+					<view class="address-detail" @click.stop="jumpAddress">
+						{{ defaultAddress.receiveProvinceCityArea}}{{ defaultAddress.receiveAddress }}
 					</view>
 					<view class="concat-info">
-						<view>WangHao</view>
-						<view>18318996297</view>
+						<view>{{ defaultAddress.receiveName }}</view>
+						<view>{{ defaultAddress.receivePhone }}</view>
 					</view>
 					<view class="door-number">
 						<text>楼层门牌:</text>
-						<text>A7926</text>
+						<text>{{ defaultAddress.doorNumber }}</text>
 					</view>
 					<!-- 送货时间 -->
-					<view class="send-time" @click="selectSendTime">
+					<view class="send-time" @click.stop="selectSendTime">
 						<view>送达时间</view>
 						<view class="send-info">
 							<view class="not-select" v-if="!form.appointmentTime">未选择(必选)</view>
@@ -58,7 +58,8 @@
 			<!-- 表单内容 -->
 			<view class="form-content">
 				<u--form labelPosition="top" :model="form" ref="orderForm" :rules="rules">
-					<u-form-item label="购买内容" prop="orderDetailName" borderBottom labelWidth="150rpx" required v-if="form.type === 2">
+					<u-form-item label="购买内容" prop="orderDetailName" borderBottom labelWidth="150rpx" required
+						v-if="form.type === 2">
 						<u--textarea v-model="form.orderDetailName" placeholder="请填写帮买的信息哟!"></u--textarea>
 					</u-form-item>
 					<u-form-item label="订单费用" prop="orderAmount" borderBottom labelWidth="150rpx" required
@@ -88,12 +89,19 @@
 <script>
 	const App = getApp().globalData
 	import NavBar from '../../../component/navbar/navbar.vue'
+	import { selectAddressList } from '@/network/address/address.js'
+	import { mapGetters } from 'vuex'
+import { data } from 'uview-ui/libs/mixin/mixin'
 	export default {
 		components: {
 			NavBar
 		},
 		data() {
 			return {
+				//判断用户是否有地址数据
+				hasAddress:false,
+				//记录用户的取货地址 这个用于跑腿页面传递地址过来存储没有传递就用于记录用户在订单页面填写(选择)的收获地址
+				userContentAddress: '',
 				customNav: App.customNav,
 				showDatePicker: false, //显示日期选择
 				//日期格式定位当前日期
@@ -110,32 +118,13 @@
 					orderDetailCode: '', //取件码
 					orderAmount: '', //代买订单费用
 					tipFee: '', //跑腿小费
-					payMode: '1', //支付方式
+					payMode: 1, //支付方式
 					orderDetailName: '', //订单的信息详情
 					orderRemark: '', //订单备注
 					appointmentTime: '', //预约时间
 				},
 				//规则匹配
 				rules: {
-					// receiveName: [{
-					// 	required: true,
-					// 	message: '请输入收件人昵称',
-					// 	trigger: ['blur', 'change']
-					// }],
-					// receivePhone: [{
-					// 		required: true,
-					// 		message: '请输入手机号',
-					// 		trigger: ['change', 'blur'],
-					// 	},
-					// 	{
-					// 		validator: (rule, value, callback) => {
-					// 			return uni.$u.test.mobile(value);
-					// 		},
-					// 		message: '手机号码不正确',
-					// 		// 触发器可以同时用blur和change
-					// 		trigger: ['change', 'blur'],
-					// 	}
-					// ],
 					orderDetailName: [{
 						required: true,
 						message: '请填写帮买的信息哟!',
@@ -175,7 +164,21 @@
 				selectType: '帮我送'
 			}
 		},
+		computed: {
+			...mapGetters(['defaultAddress'])
+		},
 		methods: {
+			//获取用户的地址
+			async getUserAddress() {
+				let query = {
+					isDefault:2, //查找默认地址
+					delFlag:1, //判断是否删除
+				}
+				const addressList = await selectAddressList(query)
+				if (addressList.data.length > 0) {
+					this.$store.commit('user/SET_DEFAULT_ADDRESS',addressList.data[0])
+				}
+			},
 			//监听type类型的变化
 			groupChange(name) {
 				//避免用户在帮我买类型的情况填写了数据 这里将数据清理一下
@@ -205,6 +208,15 @@
 
 				this.showDatePicker = false
 			},
+			//页面跳转
+			jumpAddress() {
+				uni.navigateTo({
+					url:"/pages/user/childCmps/address/address",
+					fail(err) {
+						console.error(err)
+					}
+				})
+			},
 			//点击下单
 			submit() {
 				//如果用户选择类型为帮我买 其内部还有两个参数需要判断是否填写
@@ -212,19 +224,28 @@
 				// if (!(this.form.receiveAddress || this.form.receivePhone)) {
 				// 	return uni.$u.toast('请前往添加收货地址')
 				// }
-				
+				if (this.defaultAddress) {
+					
+				}
+
 				//判断是否填写必填数据
 				this.$refs.orderForm.validate().then(res => {
 					console.log(res)
 					//发送网络请求下单
-					
+
 				}).catch(errors => {
 					uni.$u.toast('请完成订单内容填写')
 				})
 			}
 		},
-		created() {
-			//TODO 获取用户收货地址信息
+		onLoad(options) {
+			//获取参数
+			const address = options.selectAddress ? JSON.parse(options.selectAddress) : ''
+			if (address) { //判断页面传递的参数
+				this.userContentAddress = address.storeDetailAddress
+			}
+			//获取用户地址
+			this.getUserAddress()
 		},
 		onReady() {
 			//如果需要兼容微信小程序，并且校验规则中含有方法等，只能通过setRules方法设置规则。
@@ -239,6 +260,7 @@
 		// width: 100vw;
 		position: relative;
 		padding-bottom: 110rpx;
+		
 
 		.form-content {
 			background-color: #fff;

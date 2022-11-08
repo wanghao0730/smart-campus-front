@@ -37,10 +37,13 @@
 						<!-- 显示地理位置的坐标 -->
 						<swiper-item class="swiperItem">
 							<scroll-view @scrolltolower="lower" style="width: 100%;height: 100%;" scroll-y enable-flex>
-								<view class="loc-item" v-for="(locItem,locIndex) in customCalloutMarkerIds" :class="{'active-loc-item':locItem.id === selectAddress.id ? 'active-loc-item' : ''}" :key="locIndex" @click="handleSelect(locItem)">
+								<view class="loc-item" v-for="(locItem,locIndex) in customCalloutMarkerIds"
+									:class="{'active-loc-item':locItem.id === selectAddress.id ? 'active-loc-item' : ''}"
+									:key="locIndex" @click="handleSelect(locItem)">
 									<!-- 图片位置 -->
 									<view class="left-locImg">
-										<u--image :showLoading="true" :src="locItem.img" width="80px" mode="widthFix" height="80px" radius="15" :lazy-load="true"></u--image>
+										<u--image :showLoading="true" :src="locItem.img" width="80px" mode="widthFix"
+											height="80px" radius="15" :lazy-load="true"></u--image>
 									</view>
 									<view class="right-info">
 										<view class="title">
@@ -70,6 +73,10 @@
 </template>
 
 <script>
+	const App = getApp().globalData
+	import {
+		storeList
+	} from '@/network/store/store.js'
 	export default {
 		data() {
 			return {
@@ -107,65 +114,30 @@
 					}
 				],
 				//用户选择的地址
-				selectAddress: {}
+				selectAddress: null,
+				//总条数 下拉刷新根据这个判断
+				total: '',
+				// 查询参数对应数据库的字段
+				queryParams: {
+					pageNum: 1,
+					pageSize: 1000, //TODO 这里设置成1000数量 考虑是不是要设计分页方式这里直接请求最大数量
+					storeName: null,
+					storeDesc: null,
+					storeDetailAddress: null,
+					storeImage: null,
+					longitude: null,
+					latitude: null,
+					sort: null,
+				},
 			}
 		},
 		onLoad() {
 			this.initMap()
-		},
-		computed:{
-			activeLoc(locItem) {
-				// locItem.id === selectAddress.id ? 'active-loc-item' : ''
-				console.log(locItem)
-				return''
-			}
+			//发起网络请求
 		},
 		methods: {
 			//初始化map
-			initMap() {
-				let markers = [{
-						id: 1,
-						latitude: 23.06632,
-						longitude: 113.974258,
-						zIndex: 1,
-						iconPath: '/static/image/store.png',
-						width: 30,
-						height: 30,
-						customCallout: {
-							display: 'BYCLICK', //设置点击显示
-							anchorX: 0,
-							anchorY: 0
-						}
-					},
-					{
-						id: 2,
-						latitude: 23.065556,
-						longitude: 113.978119,
-						zIndex: 2,
-						iconPath: '/static/image/store.png',
-						width: 30,
-						height: 30,
-						customCallout: {
-							display: 'BYCLICK', //设置点击显示
-							anchorX: 0,
-							anchorY: 0
-						}
-					},
-					{
-						id: 3,
-						latitude: 23.065562,
-						longitude: 113.978026,
-						zIndex: 3,
-						iconPath: '/static/image/store.png',
-						width: 30,
-						height: 30,
-						customCallout: {
-							display: 'BYCLICK', //设置点击显示
-							anchorX: 0,
-							anchorY: 0
-						}
-					}
-				]
+			async initMap() {
 				// 获取当前手机型号 不同平台兼容处理
 				// uni.getSystemInfo({
 				// 	success(res) {
@@ -178,19 +150,34 @@
 				// 		}
 				// 	}
 				// })
-				this.markers = markers
-				this.customCalloutMarkerIds.push({
-					id: 1,
-					title: '丹鸟驿站',
-					img: 'https://touch-1313966737.cos.ap-guangzhou.myqcloud.com/img/banner/swiper-1.jpg'
-				}, {
-					id: 2,
-					title: '菜鸟驿站',
-					img: 'https://touch-1313966737.cos.ap-guangzhou.myqcloud.com/img/banner/swiper-1.jpg'
-				}, {
-					id: 3,
-					title: '顺丰快递',
-					img: 'https://touch-1313966737.cos.ap-guangzhou.myqcloud.com/img/banner/swiper-1.jpg'
+				const list = await storeList(this.queryParams);
+				this.total = list.total; //记录总条数
+				//过滤数据生成marker
+				// let markers = []
+				// let markerCalloutList = []
+				list.rows.forEach(item => {
+					let obj = {
+						id: item.id,
+						latitude: item.latitude,
+						longitude:item.longitude,
+						zIndex: item.id,
+						iconPath: '/static/image/store.png',
+						width: 30,
+						height: 30,
+						customCallout: {
+							display: 'BYCLICK', //设置点击显示
+							anchorX: 0,
+							anchorY: 0
+						}
+					}
+					this.markers.push(obj)
+					//追加calloutList
+					this.customCalloutMarkerIds.push({
+						id:item.id,
+						title:item.storeName,
+						img: App.requesturl + item.storeImage,
+						storeDetailAddress:item.storeDetailAddress
+					})
 				})
 			},
 			//处理类型切换
@@ -226,9 +213,6 @@
 						})
 					}
 				})
-				// this.markers.forEach(item => {
-				// 	console.log({ item })
-				// })
 			},
 			change(event) {
 				//改变默认的选中下标
@@ -236,25 +220,25 @@
 			},
 			//内容到底
 			lower(event) {
+				//TODO 目前设计成请求最大条数 占时不考虑分页问题  因为还不清楚数据量是否很多
 				console.log('到底')
 			},
 			//用户选择地址
 			handleSelect(address) {
+				console.log('地址',address)
 				this.selectAddress = address
 				//显示对应的地理位置store
-				this.handleMarkerTap({...this.selectAddress,markerId:this.selectAddress.id})
+				this.handleMarkerTap({
+					...this.selectAddress,
+					markerId: this.selectAddress.id
+				})
 			},
 			//跳转页面
 			jumpOrder() {
-				console.log("点击")
-				//判断用户有没有选择地址
-				// if (Object.keys(this.selectAddress).length === 0) {
-				// 	console.log('请选择')
-				// 	return getApp().globalData.global_Toast(true,'请选择地址',(res) => { console.log(res) })
-				// }
-				//将用户选择的地址跳转传递
+				//将用户选择的地址跳转传递 以及判断是否有选择 没有选择用户要在订单界面填写地址
+				const queryParams = this.selectAddress != null ? JSON.stringify(this.selectAddress) : ''
 				uni.navigateTo({
-					url:`childCmps/errandOrder`
+					url: `childCmps/errandOrder?selectAddress=${queryParams}`
 				})
 			}
 		}
@@ -366,6 +350,7 @@
 					background-color: #fff;
 					margin-bottom: 20rpx;
 				}
+
 				//选中地址
 				.active-loc-item {
 					border: 5rpx dashed #D58BDD;
@@ -392,6 +377,7 @@
 					}
 				}
 			}
+
 			//提示用户提交
 			.jump-order {
 				padding: 15rpx 0;
@@ -400,10 +386,12 @@
 				flex-direction: column;
 				align-items: center;
 				background-color: #fff;
+
 				.tip {
 					font-size: 26rpx;
 					color: $gray_color;
 				}
+
 				.btn-text {
 					background-color: $background-color;
 					width: 400rpx;
