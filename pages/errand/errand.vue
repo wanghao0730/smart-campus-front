@@ -186,7 +186,7 @@
 			},
 			//处理用户点击marker
 			handleMarkerTap(event) {
-				console.log(event)
+				console.log('zz',event)
 				this.markers.forEach(item => {
 					item.customCallout.display = 'BYCLICK'
 					if (item.id === event.markerId) {
@@ -195,6 +195,8 @@
 						item.customCallout.display = 'ALWAYS'
 						//将用户选择的地址存储
 						this.selectAddress = this.customCalloutMarkerIds[event.markerId - 1]
+						//移动地图位置
+						// this.moveToLocation(item)
 					}
 				})
 			},
@@ -240,7 +242,15 @@
 				uni.navigateTo({
 					url: `childCmps/errandOrder?selectAddress=${queryParams}`
 				})
-			}
+			},
+			//移动地图map的位置
+			// moveToLocation(loc) {
+			// 	const mapObj = uni.createMapContext("map",this)
+			// 	mapObj.moveToLocation({
+			// 		longitude:loc.longitude,
+			// 		latitude:loc.latitude
+			// 	})
+			// }
 		}
 	}
 </script>

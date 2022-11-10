@@ -19865,7 +19865,30 @@ function updateDefault(id) {
 }
 
 /***/ }),
-/* 160 */,
+/* 160 */
+/*!***************************************************************!*\
+  !*** H:/spring-boot-emos/smart-campus/network/order/order.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.selectOrderList = selectOrderList;exports.addOrder = addOrder;
+/**
+                                                                                                                                                   * 用户接口 
+                                                                                                                                                   */var
+global_request = getApp().globalData.global_request;
+
+//用户地址列表
+function selectOrderList(data) {
+  return global_request("/order/list", data, 'GET');
+}
+
+function addOrder(data) {
+  return global_request("/order/add", data, 'POST');
+}
+
+/***/ }),
 /* 161 */,
 /* 162 */,
 /* 163 */,
@@ -19873,7 +19896,8 @@ function updateDefault(id) {
 /* 165 */,
 /* 166 */,
 /* 167 */,
-/* 168 */
+/* 168 */,
+/* 169 */
 /*!*************************************************************!*\
   !*** H:/spring-boot-emos/smart-campus/network/user/user.js ***!
   \*************************************************************/
@@ -19893,7 +19917,6 @@ function userLogin(appId, data) {
 }
 
 /***/ }),
-/* 169 */,
 /* 170 */,
 /* 171 */,
 /* 172 */,
@@ -19901,7 +19924,8 @@ function userLogin(appId, data) {
 /* 174 */,
 /* 175 */,
 /* 176 */,
-/* 177 */
+/* 177 */,
+/* 178 */
 /*!*******************************************************************!*\
   !*** H:/spring-boot-emos/smart-campus/utils/validate/validity.js ***!
   \*******************************************************************/
@@ -19954,14 +19978,14 @@ var validCar = function validCar(value) {
   validCar: validCar };exports.default = _default;
 
 /***/ }),
-/* 178 */,
 /* 179 */,
 /* 180 */,
 /* 181 */,
 /* 182 */,
 /* 183 */,
 /* 184 */,
-/* 185 */
+/* 185 */,
+/* 186 */
 /*!******************************************************************************************!*\
   !*** H:/spring-boot-emos/smart-campus/node_modules/uview-ui/components/u-image/props.js ***!
   \******************************************************************************************/
@@ -20053,12 +20077,12 @@ var validCar = function validCar(value) {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 186 */,
 /* 187 */,
 /* 188 */,
 /* 189 */,
 /* 190 */,
-/* 191 */
+/* 191 */,
+/* 192 */
 /*!************************************************************************************************!*\
   !*** H:/spring-boot-emos/smart-campus/node_modules/uview-ui/components/u-radio-group/props.js ***!
   \************************************************************************************************/
@@ -20151,14 +20175,14 @@ var validCar = function validCar(value) {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 192 */,
 /* 193 */,
 /* 194 */,
 /* 195 */,
 /* 196 */,
 /* 197 */,
 /* 198 */,
-/* 199 */
+/* 199 */,
+/* 200 */
 /*!******************************************************************************************!*\
   !*** H:/spring-boot-emos/smart-campus/node_modules/uview-ui/components/u-radio/props.js ***!
   \******************************************************************************************/
@@ -20230,14 +20254,14 @@ var validCar = function validCar(value) {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 200 */,
 /* 201 */,
 /* 202 */,
 /* 203 */,
 /* 204 */,
 /* 205 */,
 /* 206 */,
-/* 207 */
+/* 207 */,
+/* 208 */
 /*!*****************************************************************************************!*\
   !*** H:/spring-boot-emos/smart-campus/node_modules/uview-ui/components/u-icon/icons.js ***!
   \*****************************************************************************************/
@@ -20460,7 +20484,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   'uicon-en': "\uE692" };exports.default = _default;
 
 /***/ }),
-/* 208 */
+/* 209 */
 /*!*****************************************************************************************!*\
   !*** H:/spring-boot-emos/smart-campus/node_modules/uview-ui/components/u-icon/props.js ***!
   \*****************************************************************************************/
@@ -20557,14 +20581,14 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 209 */,
 /* 210 */,
 /* 211 */,
 /* 212 */,
 /* 213 */,
 /* 214 */,
 /* 215 */,
-/* 216 */
+/* 216 */,
+/* 217 */
 /*!*****************************************************************************************!*\
   !*** H:/spring-boot-emos/smart-campus/node_modules/uview-ui/components/u-form/props.js ***!
   \*****************************************************************************************/
@@ -20617,12 +20641,12 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 217 */,
 /* 218 */,
 /* 219 */,
 /* 220 */,
 /* 221 */,
-/* 222 */
+/* 222 */,
+/* 223 */
 /*!**********************************************************************************************!*\
   !*** H:/spring-boot-emos/smart-campus/node_modules/uview-ui/components/u-form-item/props.js ***!
   \**********************************************************************************************/
@@ -20673,14 +20697,14 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 223 */,
 /* 224 */,
 /* 225 */,
 /* 226 */,
 /* 227 */,
 /* 228 */,
 /* 229 */,
-/* 230 */
+/* 230 */,
+/* 231 */
 /*!*********************************************************************************************!*\
   !*** H:/spring-boot-emos/smart-campus/node_modules/uview-ui/components/u-textarea/props.js ***!
   \*********************************************************************************************/
@@ -20802,12 +20826,12 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 231 */,
 /* 232 */,
 /* 233 */,
 /* 234 */,
 /* 235 */,
-/* 236 */
+/* 236 */,
+/* 237 */
 /*!******************************************************************************************!*\
   !*** H:/spring-boot-emos/smart-campus/node_modules/uview-ui/components/u-input/props.js ***!
   \******************************************************************************************/
@@ -20997,12 +21021,12 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 237 */,
 /* 238 */,
 /* 239 */,
 /* 240 */,
 /* 241 */,
-/* 242 */
+/* 242 */,
+/* 243 */
 /*!****************************************************************************************************!*\
   !*** H:/spring-boot-emos/smart-campus/node_modules/uview-ui/components/u-datetime-picker/props.js ***!
   \****************************************************************************************************/
@@ -21126,7 +21150,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 243 */
+/* 244 */
 /*!*********************************************************************************!*\
   !*** H:/spring-boot-emos/smart-campus/node_modules/uview-ui/libs/util/dayjs.js ***!
   \*********************************************************************************/
@@ -21442,7 +21466,6 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 });
 
 /***/ }),
-/* 244 */,
 /* 245 */,
 /* 246 */,
 /* 247 */,
@@ -21456,7 +21479,8 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /* 255 */,
 /* 256 */,
 /* 257 */,
-/* 258 */
+/* 258 */,
+/* 259 */
 /*!******************************************************************************************!*\
   !*** H:/spring-boot-emos/smart-campus/node_modules/uview-ui/components/u-empty/props.js ***!
   \******************************************************************************************/
@@ -21523,14 +21547,14 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 259 */,
 /* 260 */,
 /* 261 */,
 /* 262 */,
 /* 263 */,
 /* 264 */,
 /* 265 */,
-/* 266 */
+/* 266 */,
+/* 267 */
 /*!******************************************************************************************!*\
   !*** H:/spring-boot-emos/smart-campus/node_modules/uview-ui/components/u-modal/props.js ***!
   \******************************************************************************************/
@@ -21622,14 +21646,14 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 267 */,
 /* 268 */,
 /* 269 */,
 /* 270 */,
 /* 271 */,
 /* 272 */,
 /* 273 */,
-/* 274 */
+/* 274 */,
+/* 275 */
 /*!******************************************************!*\
   !*** H:/spring-boot-emos/smart-campus/utils/area.js ***!
   \******************************************************/
@@ -21794,7 +21818,6 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 city;exports.default = _default;
 
 /***/ }),
-/* 275 */,
 /* 276 */,
 /* 277 */,
 /* 278 */,
@@ -21806,7 +21829,8 @@ city;exports.default = _default;
 /* 284 */,
 /* 285 */,
 /* 286 */,
-/* 287 */
+/* 287 */,
+/* 288 */
 /*!*******************************************************************************************!*\
   !*** H:/spring-boot-emos/smart-campus/node_modules/uview-ui/libs/util/async-validator.js ***!
   \*******************************************************************************************/
@@ -23158,10 +23182,10 @@ Schema.messages = messages;var _default =
 Schema;
 // # sourceMappingURL=index.js.map
 exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/node-libs-browser/mock/process.js */ 288)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/node-libs-browser/mock/process.js */ 289)))
 
 /***/ }),
-/* 288 */
+/* 289 */
 /*!********************************************************!*\
   !*** ./node_modules/node-libs-browser/mock/process.js ***!
   \********************************************************/
@@ -23192,7 +23216,7 @@ exports.binding = function (name) {
     var path;
     exports.cwd = function () { return cwd };
     exports.chdir = function (dir) {
-        if (!path) path = __webpack_require__(/*! path */ 289);
+        if (!path) path = __webpack_require__(/*! path */ 290);
         cwd = path.resolve(dir, cwd);
     };
 })();
@@ -23205,7 +23229,7 @@ exports.features = {};
 
 
 /***/ }),
-/* 289 */
+/* 290 */
 /*!***********************************************!*\
   !*** ./node_modules/path-browserify/index.js ***!
   \***********************************************/
@@ -23515,15 +23539,15 @@ var substr = 'ab'.substr(-1) === 'b'
     }
 ;
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node-libs-browser/mock/process.js */ 288)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node-libs-browser/mock/process.js */ 289)))
 
 /***/ }),
-/* 290 */,
 /* 291 */,
 /* 292 */,
 /* 293 */,
 /* 294 */,
-/* 295 */
+/* 295 */,
+/* 296 */
 /*!*****************************************************************************************!*\
   !*** H:/spring-boot-emos/smart-campus/node_modules/uview-ui/components/u-line/props.js ***!
   \*****************************************************************************************/
@@ -23564,7 +23588,6 @@ var substr = 'ab'.substr(-1) === 'b'
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 296 */,
 /* 297 */,
 /* 298 */,
 /* 299 */,
@@ -23585,7 +23608,8 @@ var substr = 'ab'.substr(-1) === 'b'
 /* 314 */,
 /* 315 */,
 /* 316 */,
-/* 317 */
+/* 317 */,
+/* 318 */
 /*!*******************************************************************************************!*\
   !*** H:/spring-boot-emos/smart-campus/node_modules/uview-ui/components/u-picker/props.js ***!
   \*******************************************************************************************/
@@ -23677,14 +23701,14 @@ var substr = 'ab'.substr(-1) === 'b'
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 318 */,
 /* 319 */,
 /* 320 */,
 /* 321 */,
 /* 322 */,
 /* 323 */,
 /* 324 */,
-/* 325 */
+/* 325 */,
+/* 326 */
 /*!******************************************************************************************!*\
   !*** H:/spring-boot-emos/smart-campus/node_modules/uview-ui/components/u-popup/props.js ***!
   \******************************************************************************************/
@@ -23771,14 +23795,14 @@ var substr = 'ab'.substr(-1) === 'b'
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 326 */,
 /* 327 */,
 /* 328 */,
 /* 329 */,
 /* 330 */,
 /* 331 */,
 /* 332 */,
-/* 333 */
+/* 333 */,
+/* 334 */
 /*!*************************************************************************************************!*\
   !*** H:/spring-boot-emos/smart-campus/node_modules/uview-ui/components/u-loading-icon/props.js ***!
   \*************************************************************************************************/
@@ -23845,14 +23869,14 @@ var substr = 'ab'.substr(-1) === 'b'
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 334 */,
 /* 335 */,
 /* 336 */,
 /* 337 */,
 /* 338 */,
 /* 339 */,
 /* 340 */,
-/* 341 */
+/* 341 */,
+/* 342 */
 /*!***********************************************************************************************!*\
   !*** H:/spring-boot-emos/smart-campus/node_modules/uview-ui/components/u-transition/props.js ***!
   \***********************************************************************************************/
@@ -23884,7 +23908,7 @@ var substr = 'ab'.substr(-1) === 'b'
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 342 */
+/* 343 */
 /*!****************************************************************************************************!*\
   !*** H:/spring-boot-emos/smart-campus/node_modules/uview-ui/components/u-transition/transition.js ***!
   \****************************************************************************************************/
@@ -23895,7 +23919,7 @@ var substr = 'ab'.substr(-1) === 'b'
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 35));
 
 
-var _nvueAniMap = _interopRequireDefault(__webpack_require__(/*! ./nvue.ani-map.js */ 343));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} // 定义一个一定时间后自动成功的promise，让调用nextTick方法处，进入下一个then方法
+var _nvueAniMap = _interopRequireDefault(__webpack_require__(/*! ./nvue.ani-map.js */ 344));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} // 定义一个一定时间后自动成功的promise，让调用nextTick方法处，进入下一个then方法
 var nextTick = function nextTick() {return new Promise(function (resolve) {return setTimeout(resolve, 1000 / 50);});}; // nvue动画模块实现细节抽离在外部文件
 
 // 定义类名，通过给元素动态切换类名，赋予元素一定的css动画样式
@@ -24049,7 +24073,7 @@ var getClassNames = function getClassNames(name) {return {
     } } };exports.default = _default;
 
 /***/ }),
-/* 343 */
+/* 344 */
 /*!******************************************************************************************************!*\
   !*** H:/spring-boot-emos/smart-campus/node_modules/uview-ui/components/u-transition/nvue.ani-map.js ***!
   \******************************************************************************************************/
@@ -24125,14 +24149,14 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     'leave-to': { opacity: 0, transform: 'scale(0.95)' } } };exports.default = _default;
 
 /***/ }),
-/* 344 */,
 /* 345 */,
 /* 346 */,
 /* 347 */,
 /* 348 */,
 /* 349 */,
 /* 350 */,
-/* 351 */
+/* 351 */,
+/* 352 */
 /*!********************************************************************************************!*\
   !*** H:/spring-boot-emos/smart-campus/node_modules/uview-ui/components/u-toolbar/props.js ***!
   \********************************************************************************************/
@@ -24174,14 +24198,14 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 352 */,
 /* 353 */,
 /* 354 */,
 /* 355 */,
 /* 356 */,
 /* 357 */,
 /* 358 */,
-/* 359 */
+/* 359 */,
+/* 360 */
 /*!********************************************************************************************!*\
   !*** H:/spring-boot-emos/smart-campus/node_modules/uview-ui/components/u-overlay/props.js ***!
   \********************************************************************************************/
@@ -24213,14 +24237,14 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 360 */,
 /* 361 */,
 /* 362 */,
 /* 363 */,
 /* 364 */,
 /* 365 */,
 /* 366 */,
-/* 367 */
+/* 367 */,
+/* 368 */
 /*!***********************************************************************************************!*\
   !*** H:/spring-boot-emos/smart-campus/node_modules/uview-ui/components/u-status-bar/props.js ***!
   \***********************************************************************************************/
@@ -24236,14 +24260,14 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 368 */,
 /* 369 */,
 /* 370 */,
 /* 371 */,
 /* 372 */,
 /* 373 */,
 /* 374 */,
-/* 375 */
+/* 375 */,
+/* 376 */
 /*!************************************************************************************************!*\
   !*** H:/spring-boot-emos/smart-campus/node_modules/uview-ui/components/u-safe-bottom/props.js ***!
   \************************************************************************************************/

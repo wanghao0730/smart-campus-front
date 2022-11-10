@@ -98,7 +98,7 @@ var components
 try {
   components = {
     "u-Image": function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u--image/u--image */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u--image/u--image")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u--image/u--image.vue */ 180))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u--image/u--image */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u--image/u--image")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u--image/u--image.vue */ 181))
     }
   }
 } catch (e) {
@@ -354,7 +354,7 @@ var App = getApp().globalData;var _default = { data: function data() {return { /
     },
     //处理用户点击marker
     handleMarkerTap: function handleMarkerTap(event) {var _this2 = this;
-      console.log(event);
+      console.log('zz', event);
       this.markers.forEach(function (item) {
         item.customCallout.display = 'BYCLICK';
         if (item.id === event.markerId) {
@@ -363,6 +363,8 @@ var App = getApp().globalData;var _default = { data: function data() {return { /
           item.customCallout.display = 'ALWAYS';
           //将用户选择的地址存储
           _this2.selectAddress = _this2.customCalloutMarkerIds[event.markerId - 1];
+          //移动地图位置
+          // this.moveToLocation(item)
         }
       });
     },
@@ -408,7 +410,16 @@ var App = getApp().globalData;var _default = { data: function data() {return { /
       uni.navigateTo({
         url: "childCmps/errandOrder?selectAddress=".concat(queryParams) });
 
-    } } };exports.default = _default;
+    }
+    //移动地图map的位置
+    // moveToLocation(loc) {
+    // 	const mapObj = uni.createMapContext("map",this)
+    // 	mapObj.moveToLocation({
+    // 		longitude:loc.longitude,
+    // 		latitude:loc.latitude
+    // 	})
+    // }
+  } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

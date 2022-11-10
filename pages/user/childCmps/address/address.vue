@@ -180,6 +180,7 @@
 		onReady() {
 			// 如果需要兼容微信小程序，并且校验规则中含有方法等，只能通过setRules方法设置规则
 			this.$refs.addressForm.setRules(this.rules)
+			
 		},
 		methods: {
 			//获取用户地址列表

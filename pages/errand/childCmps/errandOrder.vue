@@ -75,6 +75,9 @@
 					<u-form-item label="提货地址" prop="deliveryAddress" borderBottom labelWidth="150rpx" required>
 						<u--textarea v-model="form.deliveryAddress" placeholder="提货地址"></u--textarea>
 					</u-form-item>
+					<u-form-item label="备注信息" prop="orderRemark" borderBottom labelWidth="150rpx">
+						<u--textarea v-model="form.orderRemark" placeholder="备注内容"></u--textarea>
+					</u-form-item>
 				</u--form>
 			</view>
 		</view>
@@ -90,6 +93,7 @@
 	const App = getApp().globalData
 	import NavBar from '../../../component/navbar/navbar.vue'
 	import { selectAddressList } from '@/network/address/address.js'
+	import { addOrder } from '@/network/order/order.js'
 	import { mapGetters } from 'vuex'
 import { data } from 'uview-ui/libs/mixin/mixin'
 	export default {
@@ -117,7 +121,7 @@ import { data } from 'uview-ui/libs/mixin/mixin'
 					deliveryAddress: '', //取货地址
 					orderDetailCode: '', //取件码
 					orderAmount: '', //代买订单费用
-					tipFee: '', //跑腿小费
+					tipFee: null, //跑腿小费
 					payMode: 1, //支付方式
 					orderDetailName: '', //订单的信息详情
 					orderRemark: '', //订单备注
@@ -219,20 +223,31 @@ import { data } from 'uview-ui/libs/mixin/mixin'
 			},
 			//点击下单
 			submit() {
-				//如果用户选择类型为帮我买 其内部还有两个参数需要判断是否填写
-				//单独判断用户是否选择地址
-				// if (!(this.form.receiveAddress || this.form.receivePhone)) {
-				// 	return uni.$u.toast('请前往添加收货地址')
-				// }
-				if (this.defaultAddress) {
-					
+				//判断用户是否选择地址利用vuex直接判断defaultAddress参数即可 以及预约时间
+				if (!this.defaultAddress) {
+					return uni.$u.toast('请选择收货地址')
 				}
-
+				//预约时间
+				if (!this.form.appointmentTime) {
+					return uni.$u.toast('请选择预约时间')
+				}
 				//判断是否填写必填数据
 				this.$refs.orderForm.validate().then(res => {
-					console.log(res)
 					//发送网络请求下单
-
+					//表单参数拼接
+					let queryParam = {
+						...this.form,
+						receiveName:this.defaultAddress.receiveName,
+						receiveAddress:this.defaultAddress.receiveProvinceCityArea + this.defaultAddress.receiveAddress,
+						receivePhone:this.defaultAddress.receivePhone,
+						receiveProvince:this.defaultAddress.receiveProvinceCityArea,
+						tipFee:Number(this.form.tipFee)
+					}
+					//发送新增订单请求
+					addOrder(queryParam).then(res => {
+						console.log('新增结果',res)
+						uni.$u.toast('订单发起成功')
+					});
 				}).catch(errors => {
 					uni.$u.toast('请完成订单内容填写')
 				})
@@ -242,7 +257,7 @@ import { data } from 'uview-ui/libs/mixin/mixin'
 			//获取参数
 			const address = options.selectAddress ? JSON.parse(options.selectAddress) : ''
 			if (address) { //判断页面传递的参数
-				this.userContentAddress = address.storeDetailAddress
+				this.form.deliveryAddress = address.storeDetailAddress
 			}
 			//获取用户地址
 			this.getUserAddress()
