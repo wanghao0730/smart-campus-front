@@ -8,7 +8,6 @@
     "u-form-item": "/node-modules/uview-ui/components/u-form-item/u-form-item",
     "u--input": "/node-modules/uview-ui/components/u--input/u--input",
     "u--textarea": "/node-modules/uview-ui/components/u--textarea/u--textarea",
-    "nav-bar": "/component/navbar/navbar",
     "pickers": "/components/ming-picker/ming-picker"
   }
 }

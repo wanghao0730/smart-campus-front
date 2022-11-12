@@ -20,8 +20,11 @@ var _vueI18nMin = _interopRequireDefault(__webpack_require__(/*! @/common/vue-i1
 
 
 
+
+
+
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 4));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;} // @ts-ignore
-wx.__webpack_require_UNI_MP_PLUGIN__ = __webpack_require__;_vue.default.config.productionTip = false;
+wx.__webpack_require_UNI_MP_PLUGIN__ = __webpack_require__;var Perch = function Perch() {__webpack_require__.e(/*! require.ensure | component/perch/perch */ "component/perch/perch").then((function () {return resolve(__webpack_require__(/*! @/component/perch/perch.vue */ 195));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var NavBar = function NavBar() {__webpack_require__.e(/*! require.ensure | component/navbar/navbar */ "component/navbar/navbar").then((function () {return resolve(__webpack_require__(/*! @/component/navbar/navbar.vue */ 200));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};_vue.default.config.productionTip = false;
 
 // 判断市场常见的几种刘海屏机型
 uni.getSystemInfo({
@@ -37,6 +40,11 @@ uni.getSystemInfo({
     }
   } });
 
+
+//挂载全局组件
+_vue.default.component('Perch', Perch);
+_vue.default.component('NavBar', NavBar);
+//使用插件
 _vue.default.use(_vueI18nMin.default);
 var i18n = new _vueI18nMin.default({
   // 默认语言

@@ -1,13 +1,13 @@
 <template>
 	<view class="address-wrap">
-		<nav-bar :isBack="true">
+		<NavBar :isBack="true">
 			<template #navLeft>
 				<view>
 					收货地址
 				</view>
 			</template>
-		</nav-bar>
-		<view :style="{height:customNav.navBarHeight + 'px'}"></view>
+		</NavBar>
+		<Perch />
 		<!-- 用户没有收货地址时显示 -->
 		<view class="empty-tip" v-if="isEmpty">
 			<u-empty mode="address" icon="/pages/user/childCmps/static/address.png">
@@ -34,12 +34,6 @@
 						<text>门牌号:</text>
 						<text>{{ item.doorNumber }}</text>
 					</view>
-					<!-- 默认地址选择 -->
-					<!-- <view class="default">
-						<u-radio-group v-model="value" placement="row">
-							<u-radio activeColor="#A493FF" label="默认地址" labelSize="12" size="13"></u-radio>
-						</u-radio-group>
-					</view> -->
 					<view class="default">
 						<radio-group @change="selectDefault">
 							<label>
@@ -89,7 +83,6 @@
 
 <script>
 	const App = getApp().globalData
-	import NavBar from '@/component/navbar/navbar.vue'
 	import pickers from "@/components/ming-picker/ming-picker.vue"
 	import {
 		validPhone
@@ -102,7 +95,6 @@
 	} from '@/network/address/address.js'
 	export default {
 		components: {
-			NavBar,
 			pickers
 		},
 		data() {

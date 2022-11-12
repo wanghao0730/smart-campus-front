@@ -1,13 +1,13 @@
 <template>
 	<view class="login-wrap">
 		<!-- <view class="background-design"></view> -->
-		<navbar navBk="rgba(255, 255, 255, 0)" isBack>
+		<NavBar navBk="rgba(255, 255, 255, 0)" isBack>
 			<template #navLeft>
 				<view class="login-text">登录</view>
 			</template>
-		</navbar>
+		</NavBar>
 		<!-- 撑起内容 -->
-		<view :style="{height:customNav.navBarHeight + 'px'}"></view>
+		<Perch />
 		<!-- 底部弹出内容 -->
 		<view class="popup-box" :animation="animationData">
 			<!-- 表单提交 -->
@@ -28,12 +28,8 @@
 
 <script>
 	const App = getApp().globalData
-	import navbar from "../../component/navbar/navbar.vue"
 	import {userLogin} from '../../network/user/user.js'
 	export default {
-		components: {
-			navbar
-		},
 		data() {
 			return {
 				customNav: App.customNav,

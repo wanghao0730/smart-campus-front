@@ -1,13 +1,13 @@
 <template>
 	<view class="errand-order">
-		<nav-bar :isBack="true">
+		<NavBar :isBack="true">
 			<template #navLeft>
 				<view>
 					订单页面
 				</view>
 			</template>
-		</nav-bar>
-		<view :style="{height:customNav.navBarHeight + 'px'}"></view>
+		</NavBar>
+		<Perch />
 		<!-- 用于增加内边距 -->
 		<view style="padding: 10rpx 25rpx;">
 			<!-- 选择订单类 -->
@@ -91,28 +91,27 @@
 
 <script>
 	const App = getApp().globalData
-	import NavBar from '../../../component/navbar/navbar.vue'
-	import { selectAddressList } from '@/network/address/address.js'
-	import { addOrder } from '@/network/order/order.js'
-	import { mapGetters } from 'vuex'
-import { data } from 'uview-ui/libs/mixin/mixin'
+	import {
+		selectAddressList
+	} from '@/network/address/address.js'
+	import {
+		addOrder
+	} from '@/network/order/order.js'
+	import {
+		mapGetters
+	} from 'vuex'
 	export default {
-		components: {
-			NavBar
-		},
 		data() {
 			return {
 				//判断用户是否有地址数据
-				hasAddress:false,
+				hasAddress: false,
 				//记录用户的取货地址 这个用于跑腿页面传递地址过来存储没有传递就用于记录用户在订单页面填写(选择)的收获地址
 				userContentAddress: '',
-				customNav: App.customNav,
 				showDatePicker: false, //显示日期选择
 				//日期格式定位当前日期
 				datetime: Number(new Date()),
 				minDate: Number(new Date()), //用户可以选择预约时间为当前日期之后
 				form: {
-					userId: '', //用户openid
 					type: 1, //订单类型 1帮我送(默认) 2帮我买
 					receiveName: '',
 					receivePhone: '',
@@ -175,12 +174,12 @@ import { data } from 'uview-ui/libs/mixin/mixin'
 			//获取用户的地址
 			async getUserAddress() {
 				let query = {
-					isDefault:2, //查找默认地址
-					delFlag:1, //判断是否删除
+					isDefault: 2, //查找默认地址
+					delFlag: 1, //判断是否删除
 				}
 				const addressList = await selectAddressList(query)
 				if (addressList.data.length > 0) {
-					this.$store.commit('user/SET_DEFAULT_ADDRESS',addressList.data[0])
+					this.$store.commit('user/SET_DEFAULT_ADDRESS', addressList.data[0])
 				}
 			},
 			//监听type类型的变化
@@ -209,13 +208,12 @@ import { data } from 'uview-ui/libs/mixin/mixin'
 				console.log("调用", value)
 				//时间戳转格式
 				this.form.appointmentTime = this.$u.timeFormat(value, 'yyyy-mm-dd hh:MM')
-
 				this.showDatePicker = false
 			},
 			//页面跳转
 			jumpAddress() {
 				uni.navigateTo({
-					url:"/pages/user/childCmps/address/address",
+					url: "/pages/user/childCmps/address/address",
 					fail(err) {
 						console.error(err)
 					}
@@ -237,20 +235,44 @@ import { data } from 'uview-ui/libs/mixin/mixin'
 					//表单参数拼接
 					let queryParam = {
 						...this.form,
-						receiveName:this.defaultAddress.receiveName,
-						receiveAddress:this.defaultAddress.receiveProvinceCityArea + this.defaultAddress.receiveAddress,
-						receivePhone:this.defaultAddress.receivePhone,
-						receiveProvince:this.defaultAddress.receiveProvinceCityArea,
-						tipFee:Number(this.form.tipFee)
+						receiveName: this.defaultAddress.receiveName,
+						receiveAddress: this.defaultAddress.receiveProvinceCityArea + this.defaultAddress
+							.receiveAddress,
+						receivePhone: this.defaultAddress.receivePhone,
+						receiveProvince: this.defaultAddress.receiveProvinceCityArea,
+						tipFee: Number(this.form.tipFee)
 					}
 					//发送新增订单请求
 					addOrder(queryParam).then(res => {
-						console.log('新增结果',res)
-						uni.$u.toast('订单发起成功')
+						if (res.code === 200) {
+							this.reset()
+							uni.$u.toast('订单发起成功')
+						}
 					});
 				}).catch(errors => {
 					uni.$u.toast('请完成订单内容填写')
 				})
+			},
+			//封装表单清除的方法
+			reset() {
+				this.form = {
+					type: 1, //订单类型 1帮我送(默认) 2帮我买
+					receiveName: '',
+					receivePhone: '',
+					receiveProvince: '', //收货地区
+					receiveAddress: '', //收货详情地址(合并提交)
+					deliveryAddress: '', //取货地址
+					orderDetailCode: '', //取件码
+					orderAmount: '', //代买订单费用
+					tipFee: null, //跑腿小费
+					payMode: 1, //支付方式
+					orderDetailName: '', //订单的信息详情
+					orderRemark: '', //订单备注
+					appointmentTime: '', //预约时间
+				}
+				//选择框改成初始
+				this.groupChange('帮我送')
+				this.selectType = '帮我送'
 			}
 		},
 		onLoad(options) {
@@ -266,6 +288,7 @@ import { data } from 'uview-ui/libs/mixin/mixin'
 			//如果需要兼容微信小程序，并且校验规则中含有方法等，只能通过setRules方法设置规则。
 			this.$refs.orderForm.setRules(this.rules)
 		},
+
 	}
 </script>
 
@@ -275,7 +298,7 @@ import { data } from 'uview-ui/libs/mixin/mixin'
 		// width: 100vw;
 		position: relative;
 		padding-bottom: 110rpx;
-		
+
 
 		.form-content {
 			background-color: #fff;

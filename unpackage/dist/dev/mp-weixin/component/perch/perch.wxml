@@ -1,0 +1,1 @@
+<view style="{{'height:'+(customNav.navBarHeight+'px')+';'}}"></view>

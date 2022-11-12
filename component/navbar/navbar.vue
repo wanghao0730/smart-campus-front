@@ -13,7 +13,7 @@
 </template>
 
 <script>
-	const App = getApp().globalData
+	// const App = getApp().globalData
 	export default {
 		props: {
 			// 导航头部的背景颜色
@@ -45,9 +45,9 @@
 				})
 			}
 		},
-		mounted() {
-			console.log("创建", App)
-			this.customNav = App.customNav
+		created() {
+			const global = getApp().globalData
+			this.customNav = global.customNav
 		}
 	}
 </script>

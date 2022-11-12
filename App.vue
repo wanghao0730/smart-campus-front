@@ -1190,7 +1190,7 @@ export default {
 	page{
 		width: 100%;
 		height: 100%;
-		background-color: $bk_color;
+		background-color: #f4f7fc;
 	}
 
 view {

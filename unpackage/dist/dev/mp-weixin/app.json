@@ -1,6 +1,8 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/errand/errand",
+    "pages/user/user",
     "pages/errand/childCmps/errandOrder",
     "pages/login/login"
   ],
@@ -15,15 +17,42 @@
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "触手校园",
-    "navigationBarBackgroundColor": "#FFFFFF",
-    "backgroundColor": "#FFFFFF",
+    "navigationBarBackgroundColor": "#f4f7fc",
+    "backgroundColor": "#f4f7fc",
     "navigationStyle": "custom",
     "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "color": "#666",
+    "selectedColor": "#A493FF",
+    "list": [
+      {
+        "text": "应用",
+        "pagePath": "pages/index/index",
+        "iconPath": "static/image/tabbar/index.png",
+        "selectedIconPath": "static/image/tabbar/index-active.png"
+      },
+      {
+        "text": "跑腿",
+        "pagePath": "pages/errand/errand",
+        "iconPath": "static/image/tabbar/order.png",
+        "selectedIconPath": "static/image/tabbar/order-active.png"
+      },
+      {
+        "text": "用户",
+        "pagePath": "pages/user/user",
+        "iconPath": "static/image/tabbar/user.png",
+        "selectedIconPath": "static/image/tabbar/user-active.png"
+      }
+    ]
   },
   "permission": {
     "scope.userLocation": {
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   },
-  "usingComponents": {}
+  "usingComponents": {
+    "perch": "/component/perch/perch",
+    "nav-bar": "/component/navbar/navbar"
+  }
 }

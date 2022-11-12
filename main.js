@@ -7,6 +7,9 @@ import Chinese from '@/common/locales/zh.js';
 import English from '@/common/locales/en.js';
 import VueI18n from '@/common/vue-i18n.min.js'
 
+//需要全局挂载的组件
+import Perch from '@/component/perch/perch.vue'
+import NavBar from '@/component/navbar/navbar.vue'
 //如果是vue2版本可以在这里配置
 // #ifndef VUE3
 import Vue from 'vue'
@@ -26,6 +29,11 @@ uni.getSystemInfo({
 		}
 	}
 });
+
+//挂载全局组件
+Vue.component('Perch',Perch)
+Vue.component('NavBar',NavBar)
+//使用插件
 Vue.use(VueI18n)
 const i18n = new VueI18n({
 	// 默认语言
@@ -56,6 +64,7 @@ import {
 	createSSRApp
 } from 'vue'
 import store from './store';
+import perchVue from '@/component/perch/perch.vue';
 export function createApp() {
 	const app = createSSRApp(App)
 	return {

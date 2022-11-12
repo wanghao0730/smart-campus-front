@@ -2,8 +2,21 @@
 	"easycom": {
 		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
 	},
-	"pages": [{
+	"pages": [
+		{
+			"path": "pages/index/index",
+			"style": {
+				"enablePullDownRefresh": false
+			}
+		},
+		{
 			"path": "pages/errand/errand",
+			"style": {
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/user/user",
 			"style": {
 				"enablePullDownRefresh": false
 			}
@@ -39,21 +52,34 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "触手校园",
-		"navigationBarBackgroundColor": "#FFFFFF",
-		"backgroundColor": "#FFFFFF",
+		"navigationBarBackgroundColor": "#f4f7fc",
+		"backgroundColor": "#f4f7fc",
 		"navigationStyle": "custom", //导航栏样式设置成自定义导航栏
 		"enablePullDownRefresh": true
 	},
-	// "tabBar": {
-	// 	"color": "#666",
-	// 	"selectedColor": "#3474FF",
-	// 	"list": [
-	// 		{
-	// 			"text": "首页",
-	// 			"pagePath": "pages/index/index",
-
-	// 		}
-	// 	],
-	// },
+	"tabBar": {
+		"color": "#666",
+		"selectedColor": "#A493FF",
+		"list": [
+			{
+				"text": "应用",
+				"pagePath": "pages/index/index",
+				"iconPath": "static/image/tabbar/index.png",
+				"selectedIconPath": "static/image/tabbar/index-active.png"
+			},
+			{
+				"text": "跑腿",
+				"pagePath": "pages/errand/errand",
+				"iconPath": "static/image/tabbar/order.png",
+				"selectedIconPath": "static/image/tabbar/order-active.png"
+			},
+			{
+				"text": "用户",
+				"pagePath": "pages/user/user",
+				"iconPath": "static/image/tabbar/user.png",
+				"selectedIconPath": "static/image/tabbar/user-active.png"
+			}
+		]
+	},
 	"uniIdRouter": {}
 }
