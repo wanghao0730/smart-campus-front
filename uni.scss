@@ -14,6 +14,7 @@ $font-color: #333;
 $desc-color: #999;
 $background-color:#A493FF;
 $background-color-active: #A493FF;
+$common-line: #d6d7d9; //通用下划线
 /* 可以重复使用的代码 */
 @mixin flex-center {
     display: flex;

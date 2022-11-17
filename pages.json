@@ -47,6 +47,23 @@
 					}
 				}
 			]
+		},
+		{
+			"root": "pages/index/childCmps",
+			"pages": [
+				{
+					"path": "news/newsDetail",
+					"style": {
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "classroom/classroom",
+					"style": {
+						"enablePullDownRefresh": false
+					}
+				}
+			]
 		}
 	],
 	"globalStyle": {

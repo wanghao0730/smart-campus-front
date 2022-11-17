@@ -1,14 +1,18 @@
 <template>
 	<view class="app-wrap">
-		<view class="bk-fix"></view>
 		<!-- 自定义导航 -->
 		<NavBar navBk="rgb(164,147,255)">
 			<template #navLeft>
 				<view style="color:#fff;font-weight: 500;letter-spacing: 2px;">
-					首页
+					智慧应用
 				</view>
 			</template>
 		</NavBar>
+		<Perch />
+		<!-- <view class="bk-fix"></view> -->
+		<view class="header-banner">
+			<u-swiper :list="bannerList" keyName="image" showTitle circular duration="1000" autoplay height="170" previousMargin="30" nextMargin="30"></u-swiper>
+		</view>
 		<view class="content">
 			<!-- 应用列表 -->
 			<view class="samrt-apply common-box">
@@ -41,12 +45,13 @@
 			</view>
 			<!-- 校园活动/新闻 -->
 			<view class="news common-box">
-				<!-- <view class="common-title">宣传通告</view> -->
+				<view class="common-title">宣传公告</view>
 				<view class="news-content">
 					<u-tabs :list="newsList" lineWidth="30" lineColor="#A493FF"
 						:activeStyle="{color: '#303133',fontWeight: 'bold',transform: 'scale(1.05)'}"
 						:inactiveStyle="{ color: '#606266',transform: 'scale(1)'}"
-						itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;" :current="currentIndex" @click="clickTabs">
+						itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;" :current="currentIndex"
+						@click="clickTabs">
 					</u-tabs>
 					<view class="news-swiper">
 						<swiper @change="change" :current="currentIndex" style="width: 100%;height: 100%;">
@@ -54,8 +59,11 @@
 							<swiper-item class="swiperItem" v-for="item in 4" :key="item">
 								<scroll-view @scrolltolower="lower" style="width: 100%;height: 100%;" scroll-y
 									enable-flex>
-									<view class="news-item" v-for="i in 5" :key="i">
-										<u--image src="https://www.gdust.edu.cn/e/upload/s1/fck/image/2016/12/06/xyfc1.jpg" mode="scaleToFill" radius="5" :lazy-load="true" shape="square" :showLoading="true" width="65px" height="65px"></u--image>
+									<view class="news-item" v-for="i in 5" :key="i" @click.stop="jumpDetail(i)">
+										<u--image
+											src="https://www.gdust.edu.cn/e/upload/s1/fck/image/2016/12/06/xyfc1.jpg"
+											mode="scaleToFill" radius="5" :lazy-load="true" shape="square"
+											:showLoading="true" width="65px" height="65px"></u--image>
 										<view class="news-desc">
 											<view class="title">
 												我校召开党委扩大会议深入学习宣传贯彻党的二十大精神
@@ -71,6 +79,8 @@
 					</view>
 				</view>
 			</view>
+
+
 		</view>
 
 	</view>
@@ -112,17 +122,47 @@
 						name: '风险查询'
 					},
 				],
-				newsList: [
-					{id:1,name: '校园动态'}, 
-					{id:2,name: '学校要闻'}, 
-					{id:3,name: '通知广告'}, 
-					{id:4,name: '媒体资讯'},
+				newsList: [{
+						id: 1,
+						name: '校园动态'
+					},
+					{
+						id: 2,
+						name: '学校要闻'
+					},
+					{
+						id: 3,
+						name: '通知广告'
+					},
+					{
+						id: 4,
+						name: '媒体资讯'
+					},
 				],
 				//控制当前swiper显示位置
 				currentIndex: 0,
+				bannerList: [{
+					image: 'https://cdn.uviewui.com/uview/swiper/swiper2.png',
+					title: '昨夜星辰昨夜风，画楼西畔桂堂东',
+				}, {
+					image: 'https://cdn.uviewui.com/uview/swiper/swiper1.png',
+					title: '身无彩凤双飞翼，心有灵犀一点通'
+				}, {
+					image: 'https://cdn.uviewui.com/uview/swiper/swiper3.png',
+					title: '谁念西风独自凉，萧萧黄叶闭疏窗，沉思往事立残阳'
+				}],
 			}
 		},
 		methods: {
+			jumpDetail(item) {
+				//TODO 判断当当前tabs的类型根据类型和id传递查询
+				console.log({
+					item
+				})
+				uni.navigateTo({
+					url: "childCmps/news/newsDetail"
+				})
+			},
 			//tabs点击时获取用户点击的下标
 			clickTabs(event) {
 				this.currentIndex = event.index
@@ -137,7 +177,7 @@
 			lower() {
 				console.log("scroll-view到底触发")
 			},
-			
+
 		}
 	}
 </script>
@@ -148,13 +188,16 @@
 		height: 100%;
 		position: relative;
 
-		.bk-fix {
-			width: 100%;
-			height: 450rpx;
-			background-color: $background-color;
-			border-bottom-left-radius: 50rpx;
-			border-bottom-right-radius: 50rpx;
-		}
+		// .bk-fix {
+		// 	position: absolute;
+		// 	top: 0;
+		// 	left: 0;
+		// 	width: 100%;
+		// 	height: 600rpx;
+		// 	background-color: $background-color;
+		// 	border-bottom-left-radius: 50rpx;
+		// 	border-bottom-right-radius: 50rpx;
+		// }
 
 		.content {
 			width: 100%;
@@ -217,27 +260,32 @@
 					}
 				}
 			}
+
 			//宣传通告
 			.news {
 				.news-swiper {
 					width: 100%;
 					// padding: 0rpx 30rpx;
 					height: 600rpx;
+
 					.swiperItem {
 						width: 100%;
 						box-sizing: border-box;
 						// padding: 5rpx 20rpx 10rpx 20rpx;
 						padding: 20rpx 20rpx;
+
 						.news-item {
 							display: flex;
 							margin-bottom: 20rpx;
 							padding-bottom: 30rpx;
 							border-bottom: 1px solid rgb(214, 215, 217);
+
 							.news-desc {
 								margin-left: 20rpx;
 								display: flex;
 								flex-direction: column;
 								justify-content: space-between;
+
 								.title {
 									font-weight: bolder;
 									font-size: 28rpx;
@@ -246,6 +294,7 @@
 									-webkit-line-clamp: 2;
 									overflow: hidden;
 								}
+
 								.time {
 									font-size: 20rpx;
 									color: $gray_color;

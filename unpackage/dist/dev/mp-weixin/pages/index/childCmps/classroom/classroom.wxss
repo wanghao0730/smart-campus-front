@@ -1,0 +1,55 @@
+@charset "UTF-8";
+/* uni.scss */
+/**
+ * 自定义全局的公用样式
+ */
+/* 可以重复使用的代码 */
+.classroom-select.data-v-14db636a {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.classroom-select .bk_style.data-v-14db636a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 500rpx;
+  z-index: -1;
+  background-color: #A493FF;
+  border-bottom-left-radius: 30rpx;
+  border-bottom-right-radius: 30rpx;
+}
+.classroom-select .inner-wrap.data-v-14db636a {
+  width: 100%;
+  height: 100%;
+  padding: 0 30rpx 30rpx 30rpx;
+  color: white;
+}
+.classroom-select .inner-wrap .img-info.data-v-14db636a {
+  display: flex;
+  justify-content: space-between;
+}
+.classroom-select .inner-wrap .img-info .tip.data-v-14db636a {
+  padding-top: 60rpx;
+  color: #ffffff;
+  font-family: '微软雅黑';
+  font-weight: 800;
+  letter-spacing: 8rpx;
+  font-size: 40rpx;
+}
+.classroom-select .inner-wrap .common-style.data-v-14db636a {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 15rpx;
+  padding: 20rpx 20rpx;
+  margin-bottom: 30rpx;
+}
+.classroom-select .inner-wrap .sub-info.data-v-14db636a {
+  display: flex;
+}
+.classroom-select .inner-wrap .sub-info .left-desc.data-v-14db636a {
+  font-size: 25rpx;
+  color: #283043;
+}
+

@@ -12,6 +12,13 @@
       "pages": [
         "address/address"
       ]
+    },
+    {
+      "root": "pages/index/childCmps",
+      "pages": [
+        "news/newsDetail",
+        "classroom/classroom"
+      ]
     }
   ],
   "window": {

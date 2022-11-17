@@ -97,17 +97,20 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
+    uSwiper: function() {
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-swiper/u-swiper */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-swiper/u-swiper")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-swiper/u-swiper.vue */ 223))
+    },
     uScrollList: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-scroll-list/u-scroll-list */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-scroll-list/u-scroll-list")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-scroll-list/u-scroll-list.vue */ 207))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-scroll-list/u-scroll-list */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-scroll-list/u-scroll-list")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-scroll-list/u-scroll-list.vue */ 231))
     },
     uIcon: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-icon/u-icon")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 217))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-icon/u-icon")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 241))
     },
     uTabs: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-tabs/u-tabs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-tabs/u-tabs")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-tabs/u-tabs.vue */ 226))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-tabs/u-tabs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-tabs/u-tabs")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-tabs/u-tabs.vue */ 250))
     },
     "u-Image": function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u--image/u--image */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u--image/u--image")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u--image/u--image.vue */ 234))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u--image/u--image */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u--image/u--image")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u--image/u--image.vue */ 258))
     }
   }
 } catch (e) {
@@ -164,7 +167,17 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -278,17 +291,47 @@ var _default =
         name: '风险查询' }],
 
 
-      newsList: [
-      { id: 1, name: '校园动态' },
-      { id: 2, name: '学校要闻' },
-      { id: 3, name: '通知广告' },
-      { id: 4, name: '媒体资讯' }],
+      newsList: [{
+        id: 1,
+        name: '校园动态' },
+
+      {
+        id: 2,
+        name: '学校要闻' },
+
+      {
+        id: 3,
+        name: '通知广告' },
+
+      {
+        id: 4,
+        name: '媒体资讯' }],
+
 
       //控制当前swiper显示位置
-      currentIndex: 0 };
+      currentIndex: 0,
+      bannerList: [{
+        image: 'https://cdn.uviewui.com/uview/swiper/swiper2.png',
+        title: '昨夜星辰昨夜风，画楼西畔桂堂东' },
+      {
+        image: 'https://cdn.uviewui.com/uview/swiper/swiper1.png',
+        title: '身无彩凤双飞翼，心有灵犀一点通' },
+      {
+        image: 'https://cdn.uviewui.com/uview/swiper/swiper3.png',
+        title: '谁念西风独自凉，萧萧黄叶闭疏窗，沉思往事立残阳' }] };
+
 
   },
   methods: {
+    jumpDetail: function jumpDetail(item) {
+      //TODO 判断当当前tabs的类型根据类型和id传递查询
+      console.log({
+        item: item });
+
+      uni.navigateTo({
+        url: "childCmps/news/newsDetail" });
+
+    },
     //tabs点击时获取用户点击的下标
     clickTabs: function clickTabs(event) {
       this.currentIndex = event.index;
@@ -303,6 +346,7 @@ var _default =
     lower: function lower() {
       console.log("scroll-view到底触发");
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

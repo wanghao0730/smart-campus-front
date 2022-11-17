@@ -48,6 +48,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "教室预约界面",
+          "pathName": "pages/index/childCmps/classroom/classroom",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }
