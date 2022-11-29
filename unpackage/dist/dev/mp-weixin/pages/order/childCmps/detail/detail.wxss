@@ -1,0 +1,80 @@
+@charset "UTF-8";
+/* uni.scss */
+/**
+ * 自定义全局的公用样式
+ */
+/* 可以重复使用的代码 */
+.order-detail.data-v-1b8461ff {
+  width: 100%;
+  height: 100%;
+  background-color: #f2f2f2;
+}
+.order-detail .footer-btn.data-v-1b8461ff {
+  width: 100vw;
+  position: fixed;
+  z-index: 100;
+  bottom: 0;
+  left: 0;
+  padding: 0 30rpx;
+  height: 120rpx;
+  border-top: 2rpx solid #d6d7d9;
+  background-color: #fff;
+  border-top-left-radius: 15rpx;
+  border-top-right-radius: 15rpx;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.order-detail .footer-btn .order-step.data-v-1b8461ff {
+  padding: 12rpx 30rpx;
+  border-radius: 20rpx;
+  color: #fff;
+  font-size: 28rpx;
+  letter-spacing: 5rpx;
+  background-color: #A493FF;
+}
+.order-detail .detail.data-v-1b8461ff {
+  padding: 30rpx 30rpx 130rpx 30rpx;
+}
+.order-detail .detail .common-right.data-v-1b8461ff {
+  margin-right: 20rpx;
+}
+.order-detail .detail .common-style.data-v-1b8461ff {
+  padding: 20rpx 30rpx;
+  width: 100%;
+  border-radius: 18rpx;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+}
+.order-detail .detail .line-margin.data-v-1b8461ff {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 15rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid #d6d7d9;
+  margin-bottom: 25rpx;
+  font-size: 30rpx;
+}
+.order-detail .detail .user-msg.data-v-1b8461ff {
+  font-size: 35rpx;
+}
+.order-detail .detail .price-box.data-v-1b8461ff {
+  padding: 30rpx 0 15rpx 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.order-detail .detail .price-box .amount.data-v-1b8461ff {
+  width: 100%;
+  font-size: 35rpx;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+.order-detail .detail .price-box .total.data-v-1b8461ff {
+  font-size: 45rpx;
+  font-weight: bold;
+}
+

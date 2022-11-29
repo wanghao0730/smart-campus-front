@@ -42,7 +42,7 @@
 									:key="locIndex" @click="handleSelect(locItem)">
 									<!-- 图片位置 -->
 									<view class="left-locImg">
-										<u--image :showLoading="true" :src="locItem.img" width="80px" mode="widthFix"
+										<u--image :showLoading="true" :src="locItem.img" width="80px" mode="aspectFit"
 											height="80px" radius="15" :lazy-load="true"></u--image>
 									</view>
 									<view class="right-info">

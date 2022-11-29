@@ -60,7 +60,7 @@
 				<u--form labelPosition="top" :model="form" ref="orderForm" :rules="rules">
 					<u-form-item label="购买内容" prop="orderDetailName" borderBottom labelWidth="150rpx" required
 						v-if="form.type === 2">
-						<u--textarea v-model="form.orderDetailName" placeholder="请填写帮买的信息哟!"></u--textarea>
+						<u--textarea v-model="form.orderDetailName" placeholder="请填写帮买信息哟!"></u--textarea>
 					</u-form-item>
 					<u-form-item label="订单费用" prop="orderAmount" borderBottom labelWidth="150rpx" required
 						v-if="form.type === 2">
@@ -171,8 +171,16 @@
 			...mapGetters(['defaultAddress'])
 		},
 		methods: {
+			//判断用户是否登录
+			isLogin(){
+				return App.wxuser
+			},
 			//获取用户的地址
 			async getUserAddress() {
+				console.log(this.isLogin())
+				if (!this.isLogin()) {
+					return uni.$u.toast('请先完成登录')
+				}
 				let query = {
 					isDefault: 2, //查找默认地址
 					delFlag: 1, //判断是否删除
@@ -221,6 +229,12 @@
 			},
 			//点击下单
 			submit() {
+				//判断当前用户是否完成登录过
+				const wxUser = this.isLogin()
+				console.log(wxUser)
+				if (!wxUser) {
+					return uni.$u.toast('请先完成登录')
+				}
 				//判断用户是否选择地址利用vuex直接判断defaultAddress参数即可 以及预约时间
 				if (!this.defaultAddress) {
 					return uni.$u.toast('请选择收货地址')
@@ -235,6 +249,8 @@
 					//表单参数拼接
 					let queryParam = {
 						...this.form,
+						avatar:wxUser.photo,
+						nickname:wxUser.nickname,
 						receiveName: this.defaultAddress.receiveName,
 						receiveAddress: this.defaultAddress.receiveProvinceCityArea + this.defaultAddress
 							.receiveAddress,

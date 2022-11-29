@@ -13,8 +13,12 @@
   padding: 20rpx 10rpx;
 }
 .news-detail .detail-wrap .content.data-v-6da83818 {
-  padding: 25rpx;
+  padding: 0 25rpx;
   background-color: #ffffff;
   border-radius: 35rpx;
+}
+.news-detail .detail-wrap .content .parse.data-v-6da83818  view {
+  text-indent: 0pt !important;
+  margin: 20rpx 0 !important;
 }
 

@@ -180,6 +180,7 @@
 				const {
 					data: resList
 				} = await selectAddressList(this.queryParams)
+				console.log(resList)
 				if (resList.length <= 0) {
 					this.isEmpty = true
 				} else {
@@ -244,6 +245,7 @@
 					//关闭弹窗
 					this.addressModal = false
 					uni.$u.toast('新增成功')
+					this.isEmpty = false //表示有收获地址了
 					this.reset() //清除表单
 					//发送请求获取新数据
 					this.addressList()

@@ -16,6 +16,24 @@
 			}
 		},
 		{
+			"path": "pages/life/life",
+			"style": {
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/order/order",
+			"style": {
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/order/childCmps/detail/detail",
+			"style": {
+				"enablePullDownRefresh": false
+			}
+		},
+		{
 			"path": "pages/user/user",
 			"style": {
 				"enablePullDownRefresh": false
@@ -89,6 +107,18 @@
 				"pagePath": "pages/errand/errand",
 				"iconPath": "static/image/tabbar/order.png",
 				"selectedIconPath": "static/image/tabbar/order-active.png"
+			},
+			{
+				"text": "订单",
+				"pagePath": "pages/order/order",
+				"iconPath": "static/image/tabbar/sorder.png",
+				"selectedIconPath": "static/image/tabbar/sorder-active.png"
+			},
+			{
+				"text": "Life",
+				"pagePath": "pages/life/life",
+				"iconPath": "static/image/tabbar/life.png",
+				"selectedIconPath": "static/image/tabbar/life-active.png"
 			},
 			{
 				"text": "用户",

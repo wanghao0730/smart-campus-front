@@ -19,7 +19,6 @@
 					<!-- <text>查看预约详细</text> -->
 				</view>
 				<view class="right-user">
-
 				</view>
 			</view>
 			<!-- 教室信息选择 -->
@@ -56,6 +55,15 @@
 				<u-action-sheet :show="showAction" :actions="actionList" :title="actionTitle" @close="showAction = false" :closeOnClickOverlay="true" :closeOnClickAction="true" safeAreaInsetBottom @select="actionSelect">
 				</u-action-sheet>
 			</view>
+			<!-- 显示楼层数据 -->
+			<view class="building common-style">
+				<view class="title">楼栋: L4</view>
+				<view class="class-list">
+					<view class="class-item">
+						
+					</view>
+				</view>
+			</view>
 		</view>
 	
 	</view>
@@ -90,6 +98,20 @@
 			actionSelect(event) {
 				//公用的select 通过type来判断写入那个属性
 				console.log(event)
+				switch(this.actionType) {
+					case 1:
+						this.form.campus = event.value
+					break;
+					case 3:
+						this.form.dayWeek = event.value
+					break;
+					case 4:
+						this.form.buildingNo = event.value
+					break;
+					case 5:
+						this.form.whichSection = event.value
+					break;
+				}
 				//赋值form
 				// this.form.campus = event.name
 			},
@@ -131,8 +153,10 @@
 					case 5: //节数
 						let ary3 = []
 						//手动生成一到10节课
-						for (let i = 0; i < 10; i++) {
-							ary3.push({name:`第${i + 1}节-第${i+ 2}节`,value:`${i + 1},${i + 2}`})
+						for (let i = 1; i <= 10; i++) {
+							if (i % 2 === 0) {
+								ary3.push({name:`第${i-1}节-第${i}节`,value:`${i-1},${i}`})
+							}
 						}
 						this.actionType = 5
 						this.actionList = ary3
@@ -201,6 +225,26 @@
 				.left-desc {
 					font-size: 25rpx;
 					color: #283043;
+				}
+			}
+			// 楼层样式
+			.building {
+				width: 100%;
+				.title {
+					color: black;
+					padding: 20rpx 0;
+					font-size: 30rpx;
+					letter-spacing: 5rpx;
+					font-weight: 800;
+				}
+				.class-list {
+					display: flex;
+					flex-wrap: wrap;
+					.class-item {
+						padding: 10rpx;
+						border-radius: 15rpx;
+						border: 2rpx solid $background-color;
+					}
 				}
 			}
 		}

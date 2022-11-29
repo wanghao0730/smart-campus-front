@@ -37,6 +37,12 @@ $common-line: #d6d7d9; //通用下划线
 		-webkit-line-clamp: 2;
 		overflow: hidden;
 }
+@mixin clamp1 {
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 1;
+		overflow: hidden;
+}
 @mixin custom_shadow {
 	-moz-box-shadow:1px 0px 8px #A493FF; 
 	-webkit-box-shadow:1px 0px 8px #A493FF; 

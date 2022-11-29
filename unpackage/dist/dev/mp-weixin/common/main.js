@@ -24,7 +24,7 @@ var _vueI18nMin = _interopRequireDefault(__webpack_require__(/*! @/common/vue-i1
 
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 4));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;} // @ts-ignore
-wx.__webpack_require_UNI_MP_PLUGIN__ = __webpack_require__;var Perch = function Perch() {__webpack_require__.e(/*! require.ensure | component/perch/perch */ "component/perch/perch").then((function () {return resolve(__webpack_require__(/*! @/component/perch/perch.vue */ 211));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var NavBar = function NavBar() {__webpack_require__.e(/*! require.ensure | component/navbar/navbar */ "component/navbar/navbar").then((function () {return resolve(__webpack_require__(/*! @/component/navbar/navbar.vue */ 216));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};_vue.default.config.productionTip = false;
+wx.__webpack_require_UNI_MP_PLUGIN__ = __webpack_require__;var Perch = function Perch() {__webpack_require__.e(/*! require.ensure | component/perch/perch */ "component/perch/perch").then((function () {return resolve(__webpack_require__(/*! @/component/perch/perch.vue */ 233));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var NavBar = function NavBar() {__webpack_require__.e(/*! require.ensure | component/navbar/navbar */ "component/navbar/navbar").then((function () {return resolve(__webpack_require__(/*! @/component/navbar/navbar.vue */ 238));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};_vue.default.config.productionTip = false;
 
 // 判断市场常见的几种刘海屏机型
 uni.getSystemInfo({
@@ -209,8 +209,15 @@ var _format = __webpack_require__(/*! @/utils/format.js */ 9);var _this = void 0
       //判断用户的请求方式改造url get请求处理
       if (method.toLowerCase() === 'get') {
         //进行参数查询凭借 将data的参数设置为空
-        url = url + '?' + (0, _format.tansParams)(data);
-        data = {};
+        if (data) {//不为null表示需要传递参数
+          url = url + '?' + (0, _format.tansParams)(data);
+          data = {};
+        } else {
+          data = {};
+        }
+
+        // url = url + '?' + tansParams(data);
+        // data = {}
         // debugger
       }
       // header.authorization = 'Bearer 5986d038-2d38-4624-92ba-526bed0034e6';
@@ -229,7 +236,7 @@ var _format = __webpack_require__(/*! @/utils/format.js */ 9);var _this = void 0
           method: method,
           dataType: 'json',
           success: function success(res) {
-            //请求是否发送成功以及成功接收到后端响应 statusCode为200
+            //请求是否发送成功以及成功接收到后端响应 statusCode为200 表示请求是正常的
             if (res.statusCode == 200) {
               if (res.data.code == 200) {
                 //! 成功后走resolve方法
@@ -251,15 +258,19 @@ var _format = __webpack_require__(/*! @/utils/format.js */ 9);var _this = void 0
               }
               // 后端自定义其他的code会走这里
               else {
+                  console.log('全局res', res);
                   getApp().globalData.global_Toast(true, res.data.msg, function (res) {});
+                  reject(res);
                 }
               //如果网络错误或者 后端设置了statuscode这里会判断
-            } else {//如果是其他错误 500的状态码在这里提示
+            } else {
+              //如果是其他错误 500的状态码在这里提示
               uni.showToast({
                 title: res.data ? res.data : '网络出错啦!,请稍后再试',
                 icon: 'none',
                 duration: 2000 });
 
+              console.log("这里打印");
               // 将异常数据抛出
               reject(res);
             }
@@ -1305,7 +1316,7 @@ var _format = __webpack_require__(/*! @/utils/format.js */ 9);var _this = void 0
     console.log("声明周期");
     var wxuser = uni.getStorageSync("wxuser");
     if (wxuser) {
-      this.globalData.wxuser = wxuser;
+      this.globalData.wxuser = JSON.parse(wxuser);
     }
     //获取系统信息
     this.globalData.SystemInfo = uni.getSystemInfoSync();

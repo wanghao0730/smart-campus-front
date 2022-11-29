@@ -52,4 +52,23 @@
   font-size: 25rpx;
   color: #283043;
 }
+.classroom-select .inner-wrap .building.data-v-14db636a {
+  width: 100%;
+}
+.classroom-select .inner-wrap .building .title.data-v-14db636a {
+  color: black;
+  padding: 20rpx 0;
+  font-size: 30rpx;
+  letter-spacing: 5rpx;
+  font-weight: 800;
+}
+.classroom-select .inner-wrap .building .class-list.data-v-14db636a {
+  display: flex;
+  flex-wrap: wrap;
+}
+.classroom-select .inner-wrap .building .class-list .class-item.data-v-14db636a {
+  padding: 10rpx;
+  border-radius: 15rpx;
+  border: 2rpx solid #A493FF;
+}
 

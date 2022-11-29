@@ -67,8 +67,15 @@ export default {
 			//判断用户的请求方式改造url get请求处理
 			if (method.toLowerCase() === 'get') {
 				//进行参数查询凭借 将data的参数设置为空
-				url = url + '?' + tansParams(data);
-				data = {}
+				if (data) { //不为null表示需要传递参数
+					url = url + '?' + tansParams(data);
+					data = {}
+				} else {
+					data = {}
+				}
+				
+				// url = url + '?' + tansParams(data);
+				// data = {}
 				// debugger
 			}
 			// header.authorization = 'Bearer 5986d038-2d38-4624-92ba-526bed0034e6';
@@ -87,7 +94,7 @@ export default {
 					method: method,
 					dataType: 'json',
 					success: function(res) {
-						//请求是否发送成功以及成功接收到后端响应 statusCode为200
+						//请求是否发送成功以及成功接收到后端响应 statusCode为200 表示请求是正常的
 						if (res.statusCode == 200) {
 							if (res.data.code == 200) {
 								//! 成功后走resolve方法
@@ -109,15 +116,19 @@ export default {
 							} 
 							// 后端自定义其他的code会走这里
 							else {
+								console.log('全局res',res)
 								getApp().globalData.global_Toast(true, res.data.msg, function(res) {});
+								reject(res)
 							}
 							//如果网络错误或者 后端设置了statuscode这里会判断
-						} else { //如果是其他错误 500的状态码在这里提示
+						} else {
+							//如果是其他错误 500的状态码在这里提示
 							uni.showToast({
 								title: res.data ? res.data : '网络出错啦!,请稍后再试',
 								icon: 'none',
 								duration: 2000
 							});
+							console.log("这里打印")
 							// 将异常数据抛出
 							reject(res)
 						}
@@ -1163,7 +1174,7 @@ export default {
 		console.log("声明周期")
 		const wxuser =  uni.getStorageSync("wxuser")
 		if (wxuser) {
-			this.globalData.wxuser = wxuser
+			this.globalData.wxuser = JSON.parse(wxuser)
 		}
 		//获取系统信息
 		this.globalData.SystemInfo = uni.getSystemInfoSync();
