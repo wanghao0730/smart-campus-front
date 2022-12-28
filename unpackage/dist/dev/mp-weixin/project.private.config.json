@@ -69,6 +69,20 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "我的",
+          "pathName": "pages/user/user",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "个人信息",
+          "pathName": "pages/user/childCmps/info/info",
+          "query": "id=4",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

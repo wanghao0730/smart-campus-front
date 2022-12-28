@@ -1,0 +1,32 @@
+@charset "UTF-8";
+/* uni.scss */
+/**
+ * 自定义全局的公用样式
+ */
+/* 可以重复使用的代码 */
+.userInfo-wrap .content.data-v-61fc6abe {
+  padding: 30rpx;
+  background-color: #ffff;
+}
+.userInfo-wrap .content .avatar.data-v-61fc6abe {
+  margin-bottom: 15rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.userInfo-wrap .content .footer.data-v-61fc6abe {
+  margin-top: 15px;
+  padding: 15rpx 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.userInfo-wrap .content .footer .submit.data-v-61fc6abe {
+  width: 250rpx;
+  height: 60rpx;
+  border-radius: 25rpx;
+  text-align: center;
+  line-height: 50rpx;
+  border: 2px solid #A493FF;
+}
+

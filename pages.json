@@ -63,6 +63,12 @@
 					"style": {
 						"enablePullDownRefresh": false
 					}
+				},
+				{
+					"path": "info/info",
+					"style": {
+						"enablePullDownRefresh": false
+					}
 				}
 			]
 		},

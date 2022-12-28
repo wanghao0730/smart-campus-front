@@ -117,7 +117,6 @@
 
 			
 				let loginForm = {
-					appid:App.WX_APPID, //小程序应用id
 					info: {
 						code,
 						username:that.form.username,
@@ -129,32 +128,15 @@
 						gender: userInfo.gender
 					}
 				}
-				const loginRes = await userLogin(loginForm.appid,loginForm.info);
-				console.log("登录后返回响应",loginRes)
+				const loginRes = await userLogin(loginForm.info);
 				uni.setStorageSync("wxuser",JSON.stringify(loginRes.data.user))
 				uni.setStorageSync("token",loginRes.data.token);
 				//放到全局对象中
 				App.wxuser = loginRes.data.user;
-				console.log("登录结果",loginRes)
-				// //调用注册用户方法
-				// let loginForm = {
-				// 	code
-				// }
-				// const {
-				// 	permission,
-				// 	token
-				// } = await userApi.login(loginForm)
-
-				// //把数据包装到wxuser中
-				// let wxuser = {
-				// 	permission,
-				// 	token
-				// }
-				// //设置用户权限到本地缓存中
-				// getApp().globalData.global_setStorageSync("wxuser", wxuser)
-				// uni.switchTab({
-				// 	url: "/pages/index/index"
-				// })
+				console.log("查看全局存储",App.wxuser)
+				uni.switchTab({
+					url: "/pages/user/user"
+				})
 			},
 		}
 	}

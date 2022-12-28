@@ -13,7 +13,8 @@
     {
       "root": "pages/user/childCmps",
       "pages": [
-        "address/address"
+        "address/address",
+        "info/info"
       ]
     },
     {
