@@ -18,7 +18,7 @@
 			<view class="samrt-apply common-box">
 				<view class="common-title">智慧应用</view>
 				<view class="app-content">
-					<view class="app-item" v-for="item in applList" :key="item.id">
+					<view class="app-item" v-for="item in applList" :key="item.id" @click="changeDetail(item)">
 						<image :src="item.icon" class="icon"></image>
 						<text>{{ item.name }}</text>
 					</view>
@@ -87,6 +87,7 @@
 </template>
 
 <script>
+	import strategyAry from './strategy-nav.js'
 	export default {
 		data() {
 			return {
@@ -177,7 +178,12 @@
 			lower() {
 				console.log("scroll-view到底触发")
 			},
-
+			/**
+			 * 跳转页面数据
+			 */
+			changeDetail(item) {
+				strategyAry[item.name][0]()
+			},
 		}
 	}
 </script>

@@ -21,7 +21,9 @@
       "root": "pages/index/childCmps",
       "pages": [
         "news/newsDetail",
-        "classroom/classroom"
+        "classroom/classroom",
+        "league/league",
+        "risk/risk"
       ]
     }
   ],

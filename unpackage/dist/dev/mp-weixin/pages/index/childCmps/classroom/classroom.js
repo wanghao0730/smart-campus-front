@@ -264,6 +264,8 @@ exports.default = void 0;
 //
 //
 //
+//
+//
 var _default = {
   data: function data() {
     return {
@@ -300,6 +302,9 @@ var _default = {
         case 1:
           this.form.campus = event.value;
           break;
+        case 2:
+          this.form.week = event.value;
+          break;
         case 3:
           this.form.dayWeek = event.value;
           break;
@@ -331,13 +336,29 @@ var _default = {
           //显示组件
           this.showAction = true;
           break;
+        case 2:
+          //周数
+          //这里可以根据实际业务修改
+          var week = 18;
+          var ary = [];
+          for (var i = 0; i < week; i++) {
+            ary.push({
+              name: "\u7B2C".concat(i + 1, "\u5468"),
+              value: i + 1
+            });
+          }
+          this.actionType = 2; //修改为周数
+          this.actionList = ary;
+          this.actionTitle = '请选择周数';
+          this.showAction = true;
+          break;
         case 3:
           //星期
           var ary1 = [];
-          for (var i = 0; i < 4; i++) {
+          for (var _i = 0; _i < 7; _i++) {
             ary1.push({
-              name: "\u661F\u671F".concat(i + 1),
-              value: i + 1
+              name: "\u661F\u671F".concat(_i + 1),
+              value: _i + 1
             });
           }
           this.actionType = 3;
@@ -348,10 +369,10 @@ var _default = {
         case 4:
           //楼栋
           var ary2 = [];
-          for (var _i = 0; _i < 9; _i++) {
+          for (var _i2 = 0; _i2 < 9; _i2++) {
             ary2.push({
-              name: "".concat(_i + 1, "\u680B"),
-              value: _i + 1
+              name: "".concat(_i2 + 1, "\u680B"),
+              value: _i2 + 1
             });
           }
           ary2.push({
@@ -373,11 +394,11 @@ var _default = {
           //节数
           var ary3 = [];
           //手动生成一到10节课
-          for (var _i2 = 1; _i2 <= 10; _i2++) {
-            if (_i2 % 2 === 0) {
+          for (var _i3 = 1; _i3 <= 10; _i3++) {
+            if (_i3 % 2 === 0) {
               ary3.push({
-                name: "\u7B2C".concat(_i2 - 1, "\u8282-\u7B2C").concat(_i2, "\u8282"),
-                value: "".concat(_i2 - 1, ",").concat(_i2)
+                name: "\u7B2C".concat(_i3 - 1, "\u8282-\u7B2C").concat(_i3, "\u8282"),
+                value: "".concat(_i3 - 1, ",").concat(_i3)
               });
             }
           }

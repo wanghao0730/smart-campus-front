@@ -30,8 +30,10 @@
 							border="none"></u--input>
 						<u-icon slot="right" name="arrow-right"></u-icon>
 					</u-form-item>
-					<u-form-item label="周数" prop="week" borderBottom>
-						<u--input v-model="form.week" placeholder="请选择具体周数" border="none"></u--input>
+					<u-form-item label="周数" prop="week" borderBottom @click="controlActionList(2)">
+						<u--input v-model="form.week" placeholder="请选择具体周数" disabled disabledColor="#ffffff"
+							border="none"></u--input>
+							<u-icon slot="right" name="arrow-right"></u-icon>
 					</u-form-item>
 					<u-form-item label="星期" prop="dayWeek" borderBottom @click="controlActionList(3)">
 						<u--input v-model="form.dayWeek" placeholder="请选择校区" disabled disabledColor="#ffffff"
@@ -52,18 +54,18 @@
 				<!--TODO 这里的action可以优化 只使用一个通用 -->
 				<!--  form表单中所需的点击选择弹窗sheet都放在这里 -->
 				<!-- 选择校区 -->
-				<u-action-sheet :show="showAction" :actions="actionList" :title="actionTitle" @close="showAction = false" :closeOnClickOverlay="true" :closeOnClickAction="true" safeAreaInsetBottom @select="actionSelect">
+				<u-action-sheet class="action-sheet" :show="showAction" :actions="actionList" :title="actionTitle" @close="showAction = false" :closeOnClickOverlay="true" :closeOnClickAction="true" safeAreaInsetBottom @select="actionSelect">
 				</u-action-sheet>
 			</view>
 			<!-- 显示楼层数据 -->
-			<view class="building common-style">
+		<!-- 	<view class="building common-style">
 				<view class="title">楼栋: L4</view>
 				<view class="class-list">
 					<view class="class-item">
 						
 					</view>
 				</view>
-			</view>
+			</view> -->
 		</view>
 	
 	</view>
@@ -102,6 +104,9 @@
 					case 1:
 						this.form.campus = event.value
 					break;
+					case 2:
+						this.form.week = event.value
+						break;
 					case 3:
 						this.form.dayWeek = event.value
 					break;
@@ -129,9 +134,21 @@
 						//显示组件
 						this.showAction = true
 					break;
+					case 2: //周数
+						//这里可以根据实际业务修改
+						let week = 18
+						let ary = []
+						for (let i = 0; i < week;i++) {
+							ary.push({name:`第${i + 1}周`,value:i+1})
+						}
+						this.actionType = 2 //修改为周数
+						this.actionList = ary
+						this.actionTitle = '请选择周数'
+						this.showAction = true
+					break;
 					case 3: //星期
 						let ary1 = []
-						for (let i = 0;i < 4; i++) {
+						for (let i = 0;i < 7; i++) {
 							ary1.push({name: `星期${i+1}`,value:i+1})
 						}
 						this.actionType = 3
@@ -192,7 +209,6 @@
 			height: 100%;
 			padding: 0 30rpx 30rpx 30rpx;
 			color: white;
-
 			// 图片信息
 			.img-info {
 				display: flex;

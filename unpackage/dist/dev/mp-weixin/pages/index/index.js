@@ -172,10 +172,12 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 3);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _strategyNav = _interopRequireDefault(__webpack_require__(/*! ./strategy-nav.js */ 664));
 //
 //
 //
@@ -343,6 +345,12 @@ var _default = {
     //scroll到底加载更多
     lower: function lower() {
       console.log("scroll-view到底触发");
+    },
+    /**
+     * 跳转页面数据
+     */
+    changeDetail: function changeDetail(item) {
+      _strategyNav.default[item.name][0]();
     }
   }
 };

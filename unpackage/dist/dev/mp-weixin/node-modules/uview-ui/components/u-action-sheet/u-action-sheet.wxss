@@ -18,6 +18,8 @@ view.data-v-6766c527, scroll-view.data-v-6766c527, swiper-item.data-v-6766c527 {
 }
 .u-action-sheet.data-v-6766c527 {
   text-align: center;
+  height: 300px !important;
+  overflow-y: scroll !important;
 }
 .u-action-sheet__header.data-v-6766c527 {
   position: relative;
@@ -33,6 +35,14 @@ view.data-v-6766c527, scroll-view.data-v-6766c527, swiper-item.data-v-6766c527 {
   position: absolute;
   right: 15px;
   top: 15px;
+}
+.u-action-sheet__customerHeader.data-v-6766c527 {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 100000;
+  background-color: white;
 }
 .u-action-sheet__description.data-v-6766c527 {
   font-size: 13px;
@@ -58,6 +68,9 @@ view.data-v-6766c527, scroll-view.data-v-6766c527, swiper-item.data-v-6766c527 {
   color: #c0c4cc;
   margin-top: 10px;
   text-align: center;
+}
+.u-action-sheet__customer-wrap.data-v-6766c527 {
+  overflow-y: scroll !important;
 }
 .u-action-sheet__cancel-text.data-v-6766c527 {
   font-size: 16px;
