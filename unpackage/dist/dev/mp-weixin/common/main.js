@@ -26,12 +26,12 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 wx.__webpack_require_UNI_MP_PLUGIN__ = __webpack_require__;
 var Perch = function Perch() {
   __webpack_require__.e(/*! require.ensure | component/perch/perch */ "component/perch/perch").then((function () {
-    return resolve(__webpack_require__(/*! @/component/perch/perch.vue */ 264));
+    return resolve(__webpack_require__(/*! @/component/perch/perch.vue */ 277));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var NavBar = function NavBar() {
   __webpack_require__.e(/*! require.ensure | component/navbar/navbar */ "component/navbar/navbar").then((function () {
-    return resolve(__webpack_require__(/*! @/component/navbar/navbar.vue */ 269));
+    return resolve(__webpack_require__(/*! @/component/navbar/navbar.vue */ 282));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 _vue.default.config.productionTip = false;

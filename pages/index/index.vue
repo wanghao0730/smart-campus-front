@@ -56,20 +56,20 @@
 					<view class="news-swiper">
 						<swiper @change="change" :current="currentIndex" style="width: 100%;height: 100%;">
 							<!-- 显示地理位置的坐标 -->
-							<swiper-item class="swiperItem" v-for="item in 4" :key="item">
-								<scroll-view @scrolltolower="lower" style="width: 100%;height: 100%;" scroll-y
+							<swiper-item class="swiperItem" v-for="newsTitle in newsList" :key="newsTitle.id">
+								<scroll-view @scrolltolower="newsLower" style="width: 100%;height: 100%;" scroll-y
 									enable-flex>
-									<view class="news-item" v-for="i in 5" :key="i" @click.stop="jumpDetail(i)">
-										<u--image
+									<view class="news-item" v-for="(newsDetail,newsIndex) in newsDetailList" :key="newsIndex" @click.stop="jumpDetail(newsDetail.id)">
+									<!-- 	<u--image
 											src="https://www.gdust.edu.cn/e/upload/s1/fck/image/2016/12/06/xyfc1.jpg"
 											mode="scaleToFill" radius="5" :lazy-load="true" shape="square"
-											:showLoading="true" width="65px" height="65px"></u--image>
+											:showLoading="true" width="65px" height="65px"></u--image> -->
 										<view class="news-desc">
 											<view class="title">
-												我校召开党委扩大会议深入学习宣传贯彻党的二十大精神
+												{{ newsDetail.title }}
 											</view>
 											<view class="time">
-												发布日期: 2022-11-04
+												发布日期: {{ newsDetail.createTime.split(' ')[0] }}
 											</view>
 										</view>
 									</view>
@@ -87,6 +87,8 @@
 </template>
 
 <script>
+	import cellGroup from 'uview-ui/libs/config/props/cellGroup'
+import { newsList as newsInfo } from '../../network/news/new.js'
 	import strategyAry from './strategy-nav.js'
 	export default {
 		data() {
@@ -140,6 +142,15 @@
 						name: '媒体广科'
 					},
 				],
+				newsDetailList:[],
+				//新闻数据请求对象
+				newsQueryInfo: {
+					type:1,
+					pageNum: 1,
+					pageSize: 10,
+				},
+				//新闻页面的总页数
+				newsTotal:0,
 				//控制当前swiper显示位置
 				currentIndex: 0,
 				bannerList: [{
@@ -152,31 +163,64 @@
 					image: 'https://cdn.uviewui.com/uview/swiper/swiper3.png',
 					title: '谁念西风独自凉，萧萧黄叶闭疏窗，沉思往事立残阳'
 				}],
+				
 			}
 		},
+		created() {
+			this.queryNews()
+		},
 		methods: {
-			jumpDetail(item) {
-				//TODO 判断当当前tabs的类型根据类型和id传递查询
-				console.log({
-					item
+			//页面内容初始化
+			init() {
+				// Promise.all([newsList]).then(res => {
+				// 	console.log(res)
+				// })
+				// Promise.all([this.queryNews()]).then(res => {
+				// 	console.log(
+				// 	'请求结果',{res})
+				// })
+			},
+			//获取新闻详情
+			queryNews() {
+				newsInfo(this.newsQueryInfo).then(res => {
+					this.newsDetailList = [...this.newsDetailList,...res.rows]
+					this.newsTotal = res.total
 				})
+			},
+			jumpDetail(id) {
+				//判断当当前tabs的类型根据类型和id传递查询
 				uni.navigateTo({
-					url: "childCmps/news/newsDetail"
+					url: `childCmps/news/newsDetail?newsId=${id}`
 				})
 			},
 			//tabs点击时获取用户点击的下标
 			clickTabs(event) {
 				this.currentIndex = event.index
-				console.log(event)
 			},
 			//swiper滑动切换
 			change(event) {
-				console.log(event)
+				//点击切换或者滑动切换都会触发这个方法在这里发请求即可
+				//根据当前下标去查找对应的新闻类型
+				const {current} = event.detail
+				const {id:type} =  this.newsList.find(item => item.id === current + 1 )
+				//改变数据重新请求
+				this.newsQueryInfo = {
+					type,
+					pageNum:1,
+					pageSize:10
+				}
+				//清楚原本数据
+				this.newsDetailList = []
+				this.queryNews() //调用新闻请求
 				this.currentIndex = event.detail.current
 			},
 			//scroll到底加载更多
-			lower() {
-				console.log("scroll-view到底触发")
+			newsLower() {
+				
+				if ((this.newsQueryInfo.pageNum * this.newsQueryInfo.pageSize) >= this.newsTotal) {
+					return uni.$u.toast('没有更多数据了...')
+				}
+				this.queryNews()
 			},
 			/**
 			 * 跳转页面数据
@@ -283,7 +327,7 @@
 						.news-item {
 							display: flex;
 							margin-bottom: 20rpx;
-							padding-bottom: 30rpx;
+							padding-bottom: 20rpx;
 							border-bottom: 1px solid rgb(214, 215, 217);
 
 							.news-desc {
@@ -304,6 +348,7 @@
 								.time {
 									font-size: 20rpx;
 									color: $gray_color;
+									margin-top: 15rpx;
 								}
 							}
 						}

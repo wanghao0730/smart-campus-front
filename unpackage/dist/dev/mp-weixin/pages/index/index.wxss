@@ -72,7 +72,7 @@
 .app-wrap .content .news .news-swiper .swiperItem .news-item.data-v-57280228 {
   display: flex;
   margin-bottom: 20rpx;
-  padding-bottom: 30rpx;
+  padding-bottom: 20rpx;
   border-bottom: 1px solid #d6d7d9;
 }
 .app-wrap .content .news .news-swiper .swiperItem .news-item .news-desc.data-v-57280228 {
@@ -92,6 +92,7 @@
 .app-wrap .content .news .news-swiper .swiperItem .news-item .news-desc .time.data-v-57280228 {
   font-size: 20rpx;
   color: #b5b5b5;
+  margin-top: 15rpx;
 }
 .app-wrap .content .book-rec .scroll-list.data-v-57280228 {
   display: flex;

@@ -1162,6 +1162,11 @@ export default {
 		 }
 	},
 	onLaunch() {
+		//解决微信小程序发布新版本的时候 缓存问题处理
+		// #ifdef MP-WEIXIN
+			this.applyUpdateWeChat();
+		// #endif
+		
 		// 1.1.0版本之前关于http拦截器代码，已平滑移动到/common/http.interceptor.js中
 		// 注意，需要在/main.js中实例化Vue之后引入如下(详见文档说明)：
 		// import httpInterceptor from '@/common/http.interceptor.js'
@@ -1188,6 +1193,36 @@ export default {
 		//导航栏上方的高度
 		this.globalData.customNav.menuTop = menuButtonInfo.top
 		this.globalData.customNav.menuHeight = menuButtonInfo.height
+	},
+	methods:{
+		/**
+		 * 检查微信小程序新版本发布 用于提示更新 清除缓存
+		 */
+		applyUpdateWeChat() {
+			const updateManager = uni.getUpdateManager()
+			
+			updateManager.onCheckForUpdate(function(res) {
+				//当向应用后台请求完整信息的时候会执行该回调
+			})
+			
+			//当新版本下载完成后会执行的回调
+			updateManager.onUpdateReady(function(res) {
+				uni.showModal({
+					title:"更新版本",
+					content:"发现新版本，是否重启应用?",
+					success(res) {
+						if (res.confirm) {//表示用户点击了确定
+							// 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+							updateManager.applyUpdate()
+						}
+					}
+				})
+			})
+			//新版本下载失败后的回调
+			updateManager.onUpdateFailed(function(res) {
+				
+			})
+		}
 	},
 	onShow() {
 		
